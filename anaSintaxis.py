@@ -2,7 +2,7 @@ import ply.yacc as yacc
 import os
 import codecs
 import re
-from anaLexico.py import tokens
+from anaLexico import tokens
 from sys import stdin
 
 #tokens Pasados= ['ID','NUMBER','PLUS','MINUS','MULT','SLASH',
@@ -148,3 +148,4 @@ def p_multiplyingOperator1(p):
 def p_multiplyingOperator2(p):
     ''' multiplyingOperator : DIVIDE'''
     print("multiplyingOperator 2")
+
