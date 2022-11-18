@@ -11,7 +11,7 @@ import ply.lex as lex
 #Se utiliza para comentar en python
 
 #Tokens
-tokens = ['ID','NUMBER','BLANK','PLUS','MINUS','MULT','SLASH','AEQL','EQL','LESSTHAN','MORETHAN','LPAR','RPAR','LKEY','RKEY','LSQLBRK','RSQLBRK','COMMA','DOT','SEMICOLON']
+tokens = ['ID','NUMINT','NUMFLOAT','BLANK','PLUS','MINUS','MULT','SLASH','AEQL','EQL','LESSTHAN','NOTEQL','MORETHAN','LPAR','RPAR','LKEY','RKEY','LBRK','RBRK','COMMA','DOT','SEMICOLON']
 
 reservadas = { #Investigar como implementar palabras reservadas
     'int':'INT',
@@ -20,75 +20,77 @@ reservadas = { #Investigar como implementar palabras reservadas
     'else':'ELSE',
     'while':'WHILE',
     'do':'DO',
-    'func':'FUNC'
+    'func':'FUNC',
+    'print':'PRINT',
+    'var':'VAR',
+    'func':'FUNC',
+    'main':'MAIN',
+    'void' : 'VOID',
+    'return' : 'RETURN'
 }
 tokens = tokens+list(reservadas.values())
 #Definir los tokens
-t_ignore = '[\t\n]'
-t_BLANK = '\s'
+t_ignore = ' '
+# t_BLANK = '\s'
 t_PLUS = r'\+'
-t_MINUS = r'-'
+t_MINUS = r'\-'
 t_MULT = r'\*'
-t_SLASH = r'/'
+t_SLASH = r'\/'
 t_AEQL = r'\='
-t_EQL = r'\=\='
+t_EQL = r'\=='
 t_LESSTHAN = r'\<'
 t_MORETHAN = r'\>'
+t_NOTEQL = r'\!='
 t_LPAR = r'\('
 t_RPAR = r'\)'
 t_LKEY = r'\{'
 t_RKEY = r'\}'
-t_LSQLBRK = r'\[' #Preguntar esto
-t_RSQLBRK = r'\]'
+t_LBRK = r'\[' #Preguntar esto
+t_RBRK = r'\]'
 t_COMMA = r'\,'
 t_DOT = r'\.'
 t_SEMICOLON = r'\;'
-#Detecta si es un id
-def t_ID(t):
-     r'[A-Za-z_][A-Za-z_0-9]*'
-     return t
-
-def t_newline(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
 
 #Detecta cuando es decimal
-def t_FLOAT(t):
-     r'\d+\.\d+'
-     try:
-        t.value = float(t.value)
-     except ValueError:
-        print("El valor del Float es muy grande %d",t.value)
-        t.value = 0
+def t_NUMFLOAT(t):
+     r'[+-]?[0-9]+\.[0-9]+'
+     t.value = float(t.value)
      return t
 
 #Detecta cuando es entero
-def t_INT(t):
-     r'0|[1-9][0-9]*'
-     try:
-        t.value = int(t.value)
-     except ValueError:
-        print("El valor del Int es muy grande %d",t.value)
-        t.value = 0
+def t_NUMINT(t):
+     r'\d+'
+     t.value = int(t.value)
      return t
+
+#Detecta si es un id
+def t_ID(t):
+     r'[a-zA-Z][a-zA-Z_0-9]*'
+     t.type = reservadas.get(t.value, 'ID')
+     return t
+
+#Detecta una nueva linea
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += t.value.count("\n")
 
 #Detecta si hay un character que no es de los que definimos
 def t_error(t):
-    print("caracter ilegal '%s' " % t.value [0])
+    print("Character ilegal '%s' " % t.value [0])
     t.lexer.skip(1)
 
-file = sys.argv[1]
-directorio = f'D:\deibo\Documents\CompiRepo\Compilador\Tests\{file} '  #Colocar el directorio para ver donde estara el archivo que se va a analizar
-fp = codecs.open(directorio,"r")
-cadena = fp. read()
-fp.close()
+# file = sys.argv[1]
+# directorio = f'D:\deibo\Documents\CompiRepo\Compilador\Tests\{file} '  #Colocar el directorio para ver donde estara el archivo que se va a analizar
+# fp = codecs.open(directorio,"r")
+# cadena = fp. read()
+# fp.close()
 
-#Se dice que lo de abajo es lo unico que se necesita para que jale
+#Es necesario para que jale
 analizador = lex.lex()
+# En el caso de que tenga que meter mas abrir
+# analizador.input(cadena)
 
-analizador.input(cadena)
-
-while True:
-    tok = analizador.token()       #35:04
-    if not tok : break
-    print(tok)
+# while True:
+#     tok = analizador.token()       #35:04
+#     if not tok : break
+#     print(tok)

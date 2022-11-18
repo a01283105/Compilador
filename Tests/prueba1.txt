@@ -2,7 +2,7 @@
 n = 8.5;
 lex.lex()
 {{}} 
-.....
+!=
 []
 <
 >
@@ -11,3 +11,4 @@ lex.lex()
 -+==
 = * ; . ,
 if IF 
+if else do while func float int in print var func main void return

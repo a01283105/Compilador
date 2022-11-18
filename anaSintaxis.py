@@ -2,150 +2,68 @@ import ply.yacc as yacc
 import os
 import codecs
 import re
+import sys
 from anaLexico import tokens
 from sys import stdin
 
 #tokens Pasados= ['ID','NUMBER','PLUS','MINUS','MULT','SLASH',
 #'AEQL','EQL','LESSTHAN','MORETHAN','LPAR','RPAR','LKEY','RKEY','LSQLBRK','RSQLBRK','COMMA','DOT','SEMICOLON']
 
-precedence = (    #Preguntar que es precedence
-    ('right', 'AEQL'),
-    ('left', 'EQL','LESSTHAN', 'MORETHAN'), #No se si este hay que ponerlo
-    ('left', 'PLUS', 'MINUS'),
-    ('left', 'MULT', 'SLASH'),
-    ('left', 'LPAR', 'RPAR')
-)
+# precedence = (    #Preguntar que es precedence
+#     ('right', 'AEQL'),
+#     ('left', 'EQL','LESSTHAN', 'MORETHAN'), #No se si este hay que ponerlo
+#     ('left', 'PLUS', 'MINUS'),
+#     ('left', 'MULT', 'SLASH'),
+#     ('left', 'LPAR', 'RPAR')
+# )
 
-def p_program(p):
-    '''program = block'''
-    print("program")
-    #p[0] = program(p[1], "program")
+# def p_programa(p):
+#     'programa : VAR SEMICOLON variable'
+#     print("program")
+#     p[0] = p[3]
 
-def p_constDecl(p):
-    '''constDecl = CONST constAssignmentList'''
-    #p[0] = constDecl(p[2])
-    print("constDecl")
+# def p_programa1(p):
+#     'variable : vari funciones'
+#     print("program1")
+#     p[0] = p[1],p[2]
 
-def p_constDeclEmpty(p):
-    '''constDecl = empty'''
-    #p[0] = null()
-    print("NULL")
+# def p_programa2(p):
+#     'variable : FUNC SEMICOLON funciones'
+#     print("program2")
+#     p[0] = p[3]
 
-def p_constAssignmentList(p):
-    '''ID = NUMBER '''
-    print("constAssignmentList 1")
+# def p_programa3(p):
+#     'funciones : '
+#     print("program2")
+#     p[0] = p[3]
 
-def p_constAssignmentList2(p):
-    '''constAssignmentList : constAssignmentList, ID = NUMBER '''
-    print("constAssignmentList 2")
+def p_tipo1(p):
+    'tipo : INT'
+    print("tipo1")
+    p[0] = p[1]
 
-def varDecl1(p):
-    ''' varDecl = VAR ID ;'''
-    print("varDecl1")
+def p_tipo2(p):
+    'tipo : FLOAT'
+    print("tipo2")
+    p[0] = p[1]
 
-def varDeclEmpty(p):
-    ''' varDecl = empty'''
-    print("NULL")
+def p_empty(p):
+     'empty :'
+     pass
 
-def identList1(p):
-    '''identList : ID'''
-    print("identList 1")
+file = sys.argv[1]
+directorio = f'D:\deibo\Documents\CompiRepo\Compilador\Tests\{file} '  #Colocar el directorio para ver donde estara el archivo que se va a analizar
+fp = codecs.open(directorio,"r")
+cadena = fp. read()
+fp.close()
 
-def identList2(p):
-    '''identList : identList, ID'''
-    print("identList 2")
-
-def procDecl1(p):
-    '''procDecl : procDecl , ID'''
-    print("procDecl 1")
-
-def procDeclEmpty(p):
-    '''procDecl : empty'''
-    print("NULL")
-
-def statement1(p):
-    '''statement : ID UPDATE expression'''
-    print("statement1")
-
-def statement2(p):
-    '''statement : CALL ID'''
-    print("statement2")
-
-def statement3(p):
-    '''statement : BEGIN statementList END'''
-    print("statement3")
-
-def statement4(p):
-    '''statement : ID condition THEN statement'''
-    print("statement4")
-
-def statement5(p):
-    '''statement : WHILE condition DO statement'''
-    print("statement5")
-
-def statementEmpty(p):
-    '''statement : empty'''
-    print("NULL")
-
-def statementList1(p):
-    '''statementList : statement'''
-    print("statementList 1")
-
-def statementList2(p):
-    '''statementList : statementList ; statement'''
-    print("statementList ")
-
-#No agregue el de condition 1 y 2
-
-def p_relation1(p):
-    '''relation : ASSIGN'''
-    print("relation 1")
-
-def p_relation2(p):
-    '''relation : NE'''
-    print("relation 2")
-
-def p_relation3(p):
-    '''relation : LT'''
-    print("relation 3")
-
-def p_relation4(p):
-    '''relation : GT'''
-    print("relation 4")
-
-def p_relation5(p):
-    '''relation : LTE'''
-    print("relation 5")
-
-def p_relation6(p):
-    '''relation : GTE'''
-    print("relation 6")
-
-def p_expression1(p):
-    ''' expression : term'''
-    print("expression 1")
-
-def p_expression2(p):
-    ''' expression : addingOperator term'''
-    print("expression 2")
-
-def p_expression3(p):
-    ''' expression : expression addingOperator term'''
-    print("expression 3")
-
-def p_term1(p):
-    '''term : factor'''
-    print("term 1")
-
-def p_term2(p):
-    '''term : term multiplyingOperator factor'''
-    print("term 2")
-
-def p_multiplyingOperator1(p):
-    ''' multiplyingOperator : TIMES'''
-    print("multiplyingOperator 1")
-
-def p_multiplyingOperator2(p):
-    ''' multiplyingOperator : DIVIDE'''
-    print("multiplyingOperator 2")
-
+parser = yacc.yacc()
+ 
+while True:
+    try:
+        s = input('calc > ')
+    except EOFError:
+        break
+    if not s: continue
+    result = parser.parse(s)
+    print(result)

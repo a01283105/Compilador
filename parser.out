@@ -1,0 +1,113 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AEQL
+    BLANK
+    COMMA
+    DO
+    DOT
+    ELSE
+    EQL
+    FUNC
+    ID
+    IF
+    LBRK
+    LESSTHAN
+    LKEY
+    LPAR
+    MAIN
+    MINUS
+    MORETHAN
+    MULT
+    NUMFLOAT
+    NUMINT
+    PLUS
+    PRINT
+    RBRK
+    RKEY
+    RPAR
+    SEMICOLON
+    SLASH
+    VAR
+    WHILE
+
+Grammar
+
+Rule 0     S' -> tipo
+Rule 1     tipo -> INT
+Rule 2     tipo -> FLOAT
+Rule 3     empty -> <empty>
+
+Terminals, with rules where they appear
+
+AEQL                 : 
+BLANK                : 
+COMMA                : 
+DO                   : 
+DOT                  : 
+ELSE                 : 
+EQL                  : 
+FLOAT                : 2
+FUNC                 : 
+ID                   : 
+IF                   : 
+INT                  : 1
+LBRK                 : 
+LESSTHAN             : 
+LKEY                 : 
+LPAR                 : 
+MAIN                 : 
+MINUS                : 
+MORETHAN             : 
+MULT                 : 
+NUMFLOAT             : 
+NUMINT               : 
+PLUS                 : 
+PRINT                : 
+RBRK                 : 
+RKEY                 : 
+RPAR                 : 
+SEMICOLON            : 
+SLASH                : 
+VAR                  : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+empty                : 
+tipo                 : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . tipo
+    (1) tipo -> . INT
+    (2) tipo -> . FLOAT
+
+    INT             shift and go to state 2
+    FLOAT           shift and go to state 3
+
+    tipo                           shift and go to state 1
+
+state 1
+
+    (0) S' -> tipo .
+
+
+
+state 2
+
+    (1) tipo -> INT .
+
+    $end            reduce using rule 1 (tipo -> INT .)
+
+
+state 3
+
+    (2) tipo -> FLOAT .
+
+    $end            reduce using rule 2 (tipo -> FLOAT .)
+
