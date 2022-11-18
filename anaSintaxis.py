@@ -17,35 +17,64 @@ from sys import stdin
 #     ('left', 'LPAR', 'RPAR')
 # )
 
-# def p_programa(p):
-#     'programa : VAR SEMICOLON variable'
-#     print("program")
-#     p[0] = p[3]
+#<PROGRAMA>
+def p_programa(p):
+    '''programa : VAR SEMICOLON variable'''
 
-# def p_programa1(p):
-#     'variable : vari funciones'
-#     print("program1")
-#     p[0] = p[1],p[2]
+def p_programa1(p):
+    '''variable : varf FUNC SEMICOLON funciones
+                | FUNC SEMICOLON funciones
+    '''
+def p_programa2(p):
+    '''funciones : funcionF MAIN SEMICOLON maines
+                | MAIN SEMICOLON maines
+    '''
+def p_programa3(p):
+    '''maines : mainf empty
+              | empty
+    '''
+def variable1(p):
+    '''varf : tipo varp'''
 
-# def p_programa2(p):
-#     'variable : FUNC SEMICOLON funciones'
-#     print("program2")
-#     p[0] = p[3]
+def variable2(p):
+    '''varp : ID array varpp
+            | ID varpp
+    '''
 
-# def p_programa3(p):
-#     'funciones : '
-#     print("program2")
-#     p[0] = p[3]
+def variable3(p):
+    '''varpp : AEQL exp varppp
+             | varppp
+    '''
+
+def variable4(p):
+    '''varppp : COMMA varp
+              | empty
+    '''
 
 def p_tipo1(p):
-    'tipo : INT'
-    print("tipo1")
-    p[0] = p[1]
+    '''tipo : INT empty
+            | FLOAT empty
+    '''
+def p_array(p):
+    '''array : LBRK exp RBRK empty'''
 
-def p_tipo2(p):
-    'tipo : FLOAT'
-    print("tipo2")
-    p[0] = p[1]
+def p_exp(p):
+    '''exp : termino PLUS exp
+           | termino MINUS exp
+           | termino empty
+    '''
+
+def p_termino(p):
+    '''termino : factor MULT termino
+               | factor SLASH termino
+               | factor empty
+    '''
+
+def p_factor(p):
+    '''factor : termino PLUS exp
+              | 
+    '''
+    
 
 def p_empty(p):
      'empty :'
