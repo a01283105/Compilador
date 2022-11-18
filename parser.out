@@ -2,112 +2,159 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    AEQL
     BLANK
-    COMMA
-    DO
     DOT
-    ELSE
-    EQL
-    FUNC
-    ID
-    IF
-    LBRK
-    LESSTHAN
-    LKEY
-    LPAR
-    MAIN
-    MINUS
-    MORETHAN
-    MULT
-    NUMFLOAT
-    NUMINT
-    PLUS
-    PRINT
-    RBRK
+    RETURN
     RKEY
-    RPAR
-    SEMICOLON
-    SLASH
-    VAR
-    WHILE
 
 Grammar
 
-Rule 0     S' -> tipo
-Rule 1     tipo -> INT
-Rule 2     tipo -> FLOAT
-Rule 3     empty -> <empty>
+Rule 0     S' -> programa
+Rule 1     programa -> VAR SEMICOLON variable
+Rule 2     variable -> varf FUNC SEMICOLON funciones
+Rule 3     variable -> FUNC SEMICOLON funciones
+Rule 4     funciones -> funcionf MAIN SEMICOLON maines
+Rule 5     funciones -> MAIN SEMICOLON maines
+Rule 6     maines -> mainf empty
+Rule 7     maines -> empty
+Rule 8     varf -> tipo varp
+Rule 9     varp -> ID array varpp
+Rule 10    varp -> ID varpp
+Rule 11    varpp -> AEQL exp varppp
+Rule 12    varpp -> varppp
+Rule 13    varppp -> COMMA varp
+Rule 14    varppp -> empty
+Rule 15    tipo -> INT
+Rule 16    tipo -> FLOAT
+Rule 17    array -> LBRK exp RBRK
+Rule 18    exp -> termino PLUS exp
+Rule 19    exp -> termino MINUS exp
+Rule 20    exp -> termino empty
+Rule 21    termino -> factor MULT termino
+Rule 22    termino -> factor SLASH termino
+Rule 23    termino -> factor empty
+Rule 24    factor -> LPAR exp RPAR
+Rule 25    factor -> PLUS varcte
+Rule 26    factor -> MINUS varcte
+Rule 27    factor -> varcte
+Rule 28    varcte -> ID
+Rule 29    varcte -> NUMFLOAT
+Rule 30    varcte -> NUMINT
+Rule 31    funcionf -> VOID funcionp
+Rule 32    funcionf -> tipo funcionp
+Rule 33    funcionp -> ID LPAR funcionpp
+Rule 34    funcionpp -> tipo ID funcionppp
+Rule 35    funcionpp -> funcionpppp
+Rule 36    funcionppp -> COMMA funcionpp
+Rule 37    funcionppp -> funcionpppp
+Rule 38    funcionpppp -> RPAR bloque
+Rule 39    bloque -> LKEY bloquep
+Rule 40    bloque -> LKEY bloqueppp
+Rule 41    bloquep -> estatuto bloquepp
+Rule 42    bloquepp -> bloquep
+Rule 43    bloquepp -> bloqueppp
+Rule 44    estatuto -> asignacion
+Rule 45    estatuto -> condif
+Rule 46    estatuto -> conwhile
+Rule 47    estatuto -> conddowhile
+Rule 48    estatuto -> escritura
+Rule 49    asignacion -> ID AEQL exp
+Rule 50    escritura -> PRINT LPAR escriturap
+Rule 51    escriturap -> expresion escriturapp
+Rule 52    escriturap -> STRING escriturapp
+Rule 53    escriturapp -> COMMA escriturap
+Rule 54    escriturapp -> RPAR
+Rule 55    condif -> IF LPAR expresion RPAR bloque condifp
+Rule 56    condifp -> ELSE bloque
+Rule 57    condifp -> empty
+Rule 58    condwhile -> WHILE LPAR expresion RPAR bloque
+Rule 59    conddowhile -> DO bloque WHILE LPAR expresion RPAR
+Rule 60    expresion -> exp expresionp
+Rule 61    expresionp -> MORETHAN expresionpp
+Rule 62    expresionp -> LESSTHAN expresionpp
+Rule 63    expresionp -> EQL expresionpp
+Rule 64    expresionp -> NOTEQL expresionpp
+Rule 65    expresionpp -> exp
+Rule 66    mainf -> bloque
+Rule 67    empty -> <empty>
 
 Terminals, with rules where they appear
 
-AEQL                 : 
+AEQL                 : 11 49
 BLANK                : 
-COMMA                : 
-DO                   : 
+COMMA                : 13 36 53
+DO                   : 59
 DOT                  : 
-ELSE                 : 
-EQL                  : 
-FLOAT                : 2
-FUNC                 : 
-ID                   : 
-IF                   : 
-INT                  : 1
-LBRK                 : 
-LESSTHAN             : 
-LKEY                 : 
-LPAR                 : 
-MAIN                 : 
-MINUS                : 
-MORETHAN             : 
-MULT                 : 
-NUMFLOAT             : 
-NUMINT               : 
-PLUS                 : 
-PRINT                : 
-RBRK                 : 
+ELSE                 : 56
+EQL                  : 63
+FLOAT                : 16
+FUNC                 : 2 3
+ID                   : 9 10 28 33 34 49
+IF                   : 55
+INT                  : 15
+LBRK                 : 17
+LESSTHAN             : 62
+LKEY                 : 39 40
+LPAR                 : 24 33 50 55 58 59
+MAIN                 : 4 5
+MINUS                : 19 26
+MORETHAN             : 61
+MULT                 : 21
+NOTEQL               : 64
+NUMFLOAT             : 29
+NUMINT               : 30
+PLUS                 : 18 25
+PRINT                : 50
+RBRK                 : 17
+RETURN               : 
 RKEY                 : 
-RPAR                 : 
-SEMICOLON            : 
-SLASH                : 
-VAR                  : 
-WHILE                : 
+RPAR                 : 24 38 54 55 58 59
+SEMICOLON            : 1 2 3 4 5
+SLASH                : 22
+STRING               : 52
+VAR                  : 1
+VOID                 : 31
+WHILE                : 58 59
 error                : 
 
 Nonterminals, with rules where they appear
 
-empty                : 
-tipo                 : 0
-
-Parsing method: LALR
-
-state 0
-
-    (0) S' -> . tipo
-    (1) tipo -> . INT
-    (2) tipo -> . FLOAT
-
-    INT             shift and go to state 2
-    FLOAT           shift and go to state 3
-
-    tipo                           shift and go to state 1
-
-state 1
-
-    (0) S' -> tipo .
-
-
-
-state 2
-
-    (1) tipo -> INT .
-
-    $end            reduce using rule 1 (tipo -> INT .)
-
-
-state 3
-
-    (2) tipo -> FLOAT .
-
-    $end            reduce using rule 2 (tipo -> FLOAT .)
+array                : 9
+asignacion           : 44
+bloque               : 38 55 56 58 59 66
+bloquep              : 39 42
+bloquepp             : 41
+bloqueppp            : 40 43
+conddowhile          : 47
+condif               : 45
+condifp              : 55
+condwhile            : 
+conwhile             : 46
+empty                : 6 7 14 20 23 57
+escritura            : 48
+escriturap           : 50 53
+escriturapp          : 51 52
+estatuto             : 41
+exp                  : 11 17 18 19 24 49 60 65
+expresion            : 51 55 58 59
+expresionp           : 60
+expresionpp          : 61 62 63 64
+factor               : 21 22 23
+funciones            : 2 3
+funcionf             : 4
+funcionp             : 31 32
+funcionpp            : 33 36
+funcionppp           : 34
+funcionpppp          : 35 37
+maines               : 4 5
+mainf                : 6
+programa             : 0
+termino              : 18 19 20 21 22
+tipo                 : 8 32 34
+varcte               : 25 26 27
+varf                 : 2
+variable             : 1
+varp                 : 8 13
+varpp                : 9 10
+varppp               : 11 12
 

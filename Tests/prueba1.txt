@@ -12,3 +12,4 @@ lex.lex()
 = * ; . ,
 if IF 
 if else do while func float int in print var func main void return
+"Esto es una prueba"

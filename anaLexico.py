@@ -11,7 +11,7 @@ import ply.lex as lex
 #Se utiliza para comentar en python
 
 #Tokens
-tokens = ['ID','NUMINT','NUMFLOAT','BLANK','PLUS','MINUS','MULT','SLASH','AEQL','EQL','LESSTHAN','NOTEQL','MORETHAN','LPAR','RPAR','LKEY','RKEY','LBRK','RBRK','COMMA','DOT','SEMICOLON']
+tokens = ['ID','NUMINT','NUMFLOAT','STRING','PLUS','MINUS','MULT','SLASH','AEQL','EQL','LESSTHAN','NOTEQL','MORETHAN','LPAR','RPAR','LKEY','RKEY','LBRK','RBRK','COMMA','DOT','SEMICOLON']
 
 reservadas = { #Investigar como implementar palabras reservadas
     'int':'INT',
@@ -31,7 +31,7 @@ reservadas = { #Investigar como implementar palabras reservadas
 tokens = tokens+list(reservadas.values())
 #Definir los tokens
 t_ignore = ' '
-# t_BLANK = '\s'
+# t_BLANK = '\s'   Si se usa agregar a tokens
 t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_MULT = r'\*'
@@ -68,6 +68,10 @@ def t_ID(t):
      r'[a-zA-Z][a-zA-Z_0-9]*'
      t.type = reservadas.get(t.value, 'ID')
      return t
+
+def t_STRING(t):
+    r'\".*\"'
+    return t
 
 #Detecta una nueva linea
 def t_newline(t):
