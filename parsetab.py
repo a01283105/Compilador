@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AEQL BLANK COMMA DO DOT ELSE EQL FLOAT FUNC ID IF INT LBRK LESSTHAN LKEY LPAR MAIN MINUS MORETHAN MULT NUMFLOAT NUMINT PLUS PRINT RBRK RKEY RPAR SEMICOLON SLASH VAR WHILEtipo : INTtipo : FLOATempty :'
+_lr_signature = 'AEQL COMMA DO ELSE EQL FLOAT FUNC ID IF INT LBRK LESSTHAN LKEY LPAR MAIN MINUS MORETHAN MULT NOTEQL NUMFLOAT NUMINT PLUS PRINT RBRK RETURN RKEY RPAR SEMICOLON SLASH STRING VAR VOID WHILEprograma : VAR SEMICOLON variablevariable : varf FUNC SEMICOLON funciones\n                | FUNC SEMICOLON funciones\n    funciones : funcionf MAIN SEMICOLON maines\n                | MAIN SEMICOLON maines\n    maines : mainf\n              | empty\n    varf : tipo varpvarp : ID array varpp\n            | ID varpp\n    varpp : AEQL exp varppp\n             | varppp\n    varppp : COMMA varp\n              | SEMICOLON varpppp empty\n    varpppp : varf\n               | empty\n    tipo : INT\n            | FLOAT\n    array : LBRK exp RBRKexp : termino PLUS exp\n           | termino MINUS exp\n           | termino empty\n    termino : factor MULT termino\n               | factor SLASH termino\n               | factor empty\n    factor : LPAR exp RPAR\n              | PLUS varcte\n              | MINUS varcte\n              | varcte\n    varcte : ID\n              | NUMFLOAT\n              | NUMINT\n    funcionf : VOID ID LPAR funcionp RPAR bloque SEMICOLON\n                | tipo ID LPAR funcionp RPAR bloque RETURN LPAR exp RPAR SEMICOLON funcionpppp\n    funcionp : funcionpp\n                | empty\n    funcionpp : tipo ID funcionppp\n    funcionppp : COMMA funcionpp\n                  | empty\n    funcionpppp : funcionf\n                   | empty\n    bloque : LKEY bloquep\n              | LKEY bloqueppp\n    bloquep : estatuto bloquepp\n    bloquepp : bloquep\n                | bloqueppp\n    bloqueppp : RKEY\n    estatuto : asignacion\n                | condif\n                | condwhile\n                | conddowhile\n                | escritura\n    asignacion : ID AEQL exp SEMICOLON\n    escritura : PRINT LPAR escriturap\n    escriturap : exp escriturapp\n                  | STRING escriturapp\n    escriturapp : COMMA escriturap\n                   | RPAR SEMICOLON\n    condif : IF LPAR expresion RPAR bloque condifp\n    condifp : ELSE bloque SEMICOLON\n               | SEMICOLON\n    condwhile : WHILE LPAR expresion RPAR bloque SEMICOLON\n    conddowhile : DO bloque WHILE LPAR expresion RPAR SEMICOLON\n    expresion : exp expresionp\n    expresionp : MORETHAN expresionpp\n                  | LESSTHAN expresionpp\n                  | EQL expresionpp\n                  | NOTEQL expresionpp\n    expresionpp : exp\n    mainf : bloque SEMICOLON\n    empty :'
     
-_lr_action_items = {'INT':([0,],[2,]),'FLOAT':([0,],[3,]),'$end':([1,2,3,],[0,-1,-2,]),}
+_lr_action_items = {'VAR':([0,],[2,]),'$end':([1,4,15,27,29,48,49,50,51,68,69,],[0,-1,-3,-2,-71,-71,-5,-6,-7,-4,-70,]),'SEMICOLON':([2,6,10,13,17,20,28,34,37,39,40,41,42,43,52,56,59,60,61,64,70,71,73,89,90,91,92,93,94,95,96,105,113,129,134,140,149,151,153,],[3,11,14,26,29,26,48,-71,-71,-29,-30,-31,-32,26,69,-19,-22,-27,-28,-25,-42,-43,-47,-20,-21,-23,-24,-26,-44,-45,-46,118,131,143,147,148,152,154,155,]),'FUNC':([3,5,12,21,24,26,32,44,45,46,47,66,67,],[6,10,-8,-10,-12,-71,-9,-13,-71,-16,-15,-11,-14,]),'INT':([3,11,14,26,54,55,115,155,],[8,8,8,8,8,8,8,8,]),'FLOAT':([3,11,14,26,54,55,115,155,],[9,9,9,9,9,9,9,9,]),'ID':([7,8,9,18,19,22,23,25,35,36,38,53,57,58,62,63,72,74,75,76,77,78,87,97,98,99,101,110,118,121,122,123,124,126,127,128,130,142,143,144,145,147,148,152,154,],[13,-17,-18,30,31,40,40,13,40,40,40,79,40,40,40,40,79,-48,-49,-50,-51,-52,103,40,40,40,40,-54,-53,40,40,40,40,40,-55,40,-56,-57,-58,40,-59,-61,-62,-63,-60,]),'MAIN':([11,14,16,131,155,156,157,158,],[17,17,28,-33,-71,-34,-40,-41,]),'VOID':([11,14,155,],[18,18,18,]),'LBRK':([13,],[22,]),'AEQL':([13,20,56,79,],[23,23,-19,97,]),'COMMA':([13,20,34,37,39,40,41,42,43,56,59,60,61,64,89,90,91,92,93,103,111,112,],[25,25,-71,-71,-29,-30,-31,-32,25,-19,-22,-27,-28,-25,-20,-21,-23,-24,-26,115,128,128,]),'LPAR':([22,23,30,31,38,57,58,62,63,80,81,83,97,98,99,101,109,121,122,123,124,126,128,133,144,],[38,38,54,55,38,38,38,38,38,98,99,101,38,38,38,38,126,38,38,38,38,38,38,144,38,]),'PLUS':([22,23,34,37,38,39,40,41,42,57,58,60,61,62,63,64,91,92,93,97,98,99,101,121,122,123,124,126,128,144,],[35,35,57,-71,35,-29,-30,-31,-32,35,35,-27,-28,35,35,-25,-23,-24,-26,35,35,35,35,35,35,35,35,35,35,35,]),'MINUS':([22,23,34,37,38,39,40,41,42,57,58,60,61,62,63,64,91,92,93,97,98,99,101,121,122,123,124,126,128,144,],[36,36,58,-71,36,-29,-30,-31,-32,36,36,-27,-28,36,36,-25,-23,-24,-26,36,36,36,36,36,36,36,36,36,36,36,]),'NUMFLOAT':([22,23,35,36,38,57,58,62,63,97,98,99,101,121,122,123,124,126,128,144,],[41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,]),'NUMINT':([22,23,35,36,38,57,58,62,63,97,98,99,101,121,122,123,124,126,128,144,],[42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,]),'LKEY':([29,48,82,102,104,119,125,146,],[53,53,53,53,53,53,53,53,]),'RBRK':([33,34,37,39,40,41,42,59,60,61,64,89,90,91,92,93,],[56,-71,-71,-29,-30,-31,-32,-22,-27,-28,-25,-20,-21,-23,-24,-26,]),'RPAR':([34,37,39,40,41,42,54,55,59,60,61,64,65,84,85,86,88,89,90,91,92,93,103,106,108,111,112,114,116,120,132,135,136,137,138,139,141,150,],[-71,-71,-29,-30,-31,-32,-71,-71,-22,-27,-28,-25,93,102,-35,-36,104,-20,-21,-23,-24,-26,-71,119,125,129,129,-37,-39,-64,-38,-65,-69,-66,-67,-68,149,153,]),'MORETHAN':([34,37,39,40,41,42,59,60,61,64,89,90,91,92,93,107,],[-71,-71,-29,-30,-31,-32,-22,-27,-28,-25,-20,-21,-23,-24,-26,121,]),'LESSTHAN':([34,37,39,40,41,42,59,60,61,64,89,90,91,92,93,107,],[-71,-71,-29,-30,-31,-32,-22,-27,-28,-25,-20,-21,-23,-24,-26,122,]),'EQL':([34,37,39,40,41,42,59,60,61,64,89,90,91,92,93,107,],[-71,-71,-29,-30,-31,-32,-22,-27,-28,-25,-20,-21,-23,-24,-26,123,]),'NOTEQL':([34,37,39,40,41,42,59,60,61,64,89,90,91,92,93,107,],[-71,-71,-29,-30,-31,-32,-22,-27,-28,-25,-20,-21,-23,-24,-26,124,]),'MULT':([37,39,40,41,42,60,61,93,],[62,-29,-30,-31,-32,-27,-28,-26,]),'SLASH':([37,39,40,41,42,60,61,93,],[63,-29,-30,-31,-32,-27,-28,-26,]),'RKEY':([53,72,74,75,76,77,78,110,118,127,130,142,143,145,147,148,152,154,],[73,73,-48,-49,-50,-51,-52,-54,-53,-55,-56,-57,-58,-59,-61,-62,-63,-60,]),'IF':([53,72,74,75,76,77,78,110,118,127,130,142,143,145,147,148,152,154,],[80,80,-48,-49,-50,-51,-52,-54,-53,-55,-56,-57,-58,-59,-61,-62,-63,-60,]),'WHILE':([53,70,71,72,73,74,75,76,77,78,94,95,96,100,110,118,127,130,142,143,145,147,148,152,154,],[81,-42,-43,81,-47,-48,-49,-50,-51,-52,-44,-45,-46,109,-54,-53,-55,-56,-57,-58,-59,-61,-62,-63,-60,]),'DO':([53,72,74,75,76,77,78,110,118,127,130,142,143,145,147,148,152,154,],[82,82,-48,-49,-50,-51,-52,-54,-53,-55,-56,-57,-58,-59,-61,-62,-63,-60,]),'PRINT':([53,72,74,75,76,77,78,110,118,127,130,142,143,145,147,148,152,154,],[83,83,-48,-49,-50,-51,-52,-54,-53,-55,-56,-57,-58,-59,-61,-62,-63,-60,]),'RETURN':([70,71,73,94,95,96,117,],[-42,-43,-47,-44,-45,-46,133,]),'ELSE':([70,71,73,94,95,96,134,],[-42,-43,-47,-44,-45,-46,146,]),'STRING':([101,128,],[112,112,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'tipo':([0,],[1,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'variable':([3,],[4,]),'varf':([3,26,],[5,47,]),'tipo':([3,11,14,26,54,55,115,155,],[7,19,19,7,87,87,87,19,]),'varp':([7,25,],[12,44,]),'funciones':([11,14,],[15,27,]),'funcionf':([11,14,155,],[16,16,157,]),'array':([13,],[20,]),'varpp':([13,20,],[21,32,]),'varppp':([13,20,43,],[24,24,66,]),'exp':([22,23,38,57,58,97,98,99,101,121,122,123,124,126,128,144,],[33,43,65,89,90,105,107,107,111,136,136,136,136,107,111,150,]),'termino':([22,23,38,57,58,62,63,97,98,99,101,121,122,123,124,126,128,144,],[34,34,34,34,34,91,92,34,34,34,34,34,34,34,34,34,34,34,]),'factor':([22,23,38,57,58,62,63,97,98,99,101,121,122,123,124,126,128,144,],[37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,]),'varcte':([22,23,35,36,38,57,58,62,63,97,98,99,101,121,122,123,124,126,128,144,],[39,39,60,61,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,39,]),'varpppp':([26,],[45,]),'empty':([26,29,34,37,45,48,54,55,103,155,],[46,51,59,64,67,51,86,86,116,158,]),'maines':([29,48,],[49,68,]),'mainf':([29,48,],[50,50,]),'bloque':([29,48,82,102,104,119,125,146,],[52,52,100,113,117,134,140,151,]),'bloquep':([53,72,],[70,95,]),'bloqueppp':([53,72,],[71,96,]),'estatuto':([53,72,],[72,72,]),'asignacion':([53,72,],[74,74,]),'condif':([53,72,],[75,75,]),'condwhile':([53,72,],[76,76,]),'conddowhile':([53,72,],[77,77,]),'escritura':([53,72,],[78,78,]),'funcionp':([54,55,],[84,88,]),'funcionpp':([54,55,115,],[85,85,132,]),'bloquepp':([72,],[94,]),'expresion':([98,99,126,],[106,108,141,]),'escriturap':([101,128,],[110,142,]),'funcionppp':([103,],[114,]),'expresionp':([107,],[120,]),'escriturapp':([111,112,],[127,130,]),'expresionpp':([121,122,123,124,],[135,137,138,139,]),'condifp':([134,],[145,]),'funcionpppp':([155,],[156,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,8 +26,76 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> tipo","S'",1,None,None,None),
-  ('tipo -> INT','tipo',1,'p_tipo1','anaSintaxis.py',41),
-  ('tipo -> FLOAT','tipo',1,'p_tipo2','anaSintaxis.py',46),
-  ('empty -> <empty>','empty',0,'p_empty','anaSintaxis.py',51),
+  ("S' -> programa","S'",1,None,None,None),
+  ('programa -> VAR SEMICOLON variable','programa',3,'p_programa','anaSintaxis.py',22),
+  ('variable -> varf FUNC SEMICOLON funciones','variable',4,'p_programa1','anaSintaxis.py',25),
+  ('variable -> FUNC SEMICOLON funciones','variable',3,'p_programa1','anaSintaxis.py',26),
+  ('funciones -> funcionf MAIN SEMICOLON maines','funciones',4,'p_programa2','anaSintaxis.py',30),
+  ('funciones -> MAIN SEMICOLON maines','funciones',3,'p_programa2','anaSintaxis.py',31),
+  ('maines -> mainf','maines',1,'p_programa3','anaSintaxis.py',35),
+  ('maines -> empty','maines',1,'p_programa3','anaSintaxis.py',36),
+  ('varf -> tipo varp','varf',2,'p_variable1','anaSintaxis.py',40),
+  ('varp -> ID array varpp','varp',3,'p_variable2','anaSintaxis.py',43),
+  ('varp -> ID varpp','varp',2,'p_variable2','anaSintaxis.py',44),
+  ('varpp -> AEQL exp varppp','varpp',3,'p_variable3','anaSintaxis.py',48),
+  ('varpp -> varppp','varpp',1,'p_variable3','anaSintaxis.py',49),
+  ('varppp -> COMMA varp','varppp',2,'p_variable4','anaSintaxis.py',53),
+  ('varppp -> SEMICOLON varpppp empty','varppp',3,'p_variable4','anaSintaxis.py',54),
+  ('varpppp -> varf','varpppp',1,'p_variable5','anaSintaxis.py',58),
+  ('varpppp -> empty','varpppp',1,'p_variable5','anaSintaxis.py',59),
+  ('tipo -> INT','tipo',1,'p_tipo','anaSintaxis.py',63),
+  ('tipo -> FLOAT','tipo',1,'p_tipo','anaSintaxis.py',64),
+  ('array -> LBRK exp RBRK','array',3,'p_array','anaSintaxis.py',68),
+  ('exp -> termino PLUS exp','exp',3,'p_exp','anaSintaxis.py',71),
+  ('exp -> termino MINUS exp','exp',3,'p_exp','anaSintaxis.py',72),
+  ('exp -> termino empty','exp',2,'p_exp','anaSintaxis.py',73),
+  ('termino -> factor MULT termino','termino',3,'p_termino','anaSintaxis.py',77),
+  ('termino -> factor SLASH termino','termino',3,'p_termino','anaSintaxis.py',78),
+  ('termino -> factor empty','termino',2,'p_termino','anaSintaxis.py',79),
+  ('factor -> LPAR exp RPAR','factor',3,'p_factor','anaSintaxis.py',83),
+  ('factor -> PLUS varcte','factor',2,'p_factor','anaSintaxis.py',84),
+  ('factor -> MINUS varcte','factor',2,'p_factor','anaSintaxis.py',85),
+  ('factor -> varcte','factor',1,'p_factor','anaSintaxis.py',86),
+  ('varcte -> ID','varcte',1,'p_varcte','anaSintaxis.py',90),
+  ('varcte -> NUMFLOAT','varcte',1,'p_varcte','anaSintaxis.py',91),
+  ('varcte -> NUMINT','varcte',1,'p_varcte','anaSintaxis.py',92),
+  ('funcionf -> VOID ID LPAR funcionp RPAR bloque SEMICOLON','funcionf',7,'p_funcion1','anaSintaxis.py',96),
+  ('funcionf -> tipo ID LPAR funcionp RPAR bloque RETURN LPAR exp RPAR SEMICOLON funcionpppp','funcionf',12,'p_funcion1','anaSintaxis.py',97),
+  ('funcionp -> funcionpp','funcionp',1,'p_funcion3','anaSintaxis.py',101),
+  ('funcionp -> empty','funcionp',1,'p_funcion3','anaSintaxis.py',102),
+  ('funcionpp -> tipo ID funcionppp','funcionpp',3,'p_funcion4','anaSintaxis.py',106),
+  ('funcionppp -> COMMA funcionpp','funcionppp',2,'p_funcion5','anaSintaxis.py',110),
+  ('funcionppp -> empty','funcionppp',1,'p_funcion5','anaSintaxis.py',111),
+  ('funcionpppp -> funcionf','funcionpppp',1,'p_funcion6','anaSintaxis.py',115),
+  ('funcionpppp -> empty','funcionpppp',1,'p_funcion6','anaSintaxis.py',116),
+  ('bloque -> LKEY bloquep','bloque',2,'p_bloque1','anaSintaxis.py',120),
+  ('bloque -> LKEY bloqueppp','bloque',2,'p_bloque1','anaSintaxis.py',121),
+  ('bloquep -> estatuto bloquepp','bloquep',2,'p_bloque2','anaSintaxis.py',125),
+  ('bloquepp -> bloquep','bloquepp',1,'p_bloque3','anaSintaxis.py',129),
+  ('bloquepp -> bloqueppp','bloquepp',1,'p_bloque3','anaSintaxis.py',130),
+  ('bloqueppp -> RKEY','bloqueppp',1,'p_bloque4','anaSintaxis.py',134),
+  ('estatuto -> asignacion','estatuto',1,'p_estatuto','anaSintaxis.py',138),
+  ('estatuto -> condif','estatuto',1,'p_estatuto','anaSintaxis.py',139),
+  ('estatuto -> condwhile','estatuto',1,'p_estatuto','anaSintaxis.py',140),
+  ('estatuto -> conddowhile','estatuto',1,'p_estatuto','anaSintaxis.py',141),
+  ('estatuto -> escritura','estatuto',1,'p_estatuto','anaSintaxis.py',142),
+  ('asignacion -> ID AEQL exp SEMICOLON','asignacion',4,'p_asignacion','anaSintaxis.py',146),
+  ('escritura -> PRINT LPAR escriturap','escritura',3,'p_escritura1','anaSintaxis.py',150),
+  ('escriturap -> exp escriturapp','escriturap',2,'p_escritura2','anaSintaxis.py',154),
+  ('escriturap -> STRING escriturapp','escriturap',2,'p_escritura2','anaSintaxis.py',155),
+  ('escriturapp -> COMMA escriturap','escriturapp',2,'p_escritura3','anaSintaxis.py',159),
+  ('escriturapp -> RPAR SEMICOLON','escriturapp',2,'p_escritura3','anaSintaxis.py',160),
+  ('condif -> IF LPAR expresion RPAR bloque condifp','condif',6,'p_condif1','anaSintaxis.py',164),
+  ('condifp -> ELSE bloque SEMICOLON','condifp',3,'p_condif2','anaSintaxis.py',168),
+  ('condifp -> SEMICOLON','condifp',1,'p_condif2','anaSintaxis.py',169),
+  ('condwhile -> WHILE LPAR expresion RPAR bloque SEMICOLON','condwhile',6,'p_condwhile','anaSintaxis.py',173),
+  ('conddowhile -> DO bloque WHILE LPAR expresion RPAR SEMICOLON','conddowhile',7,'p_conddowhile','anaSintaxis.py',177),
+  ('expresion -> exp expresionp','expresion',2,'p_expresion1','anaSintaxis.py',181),
+  ('expresionp -> MORETHAN expresionpp','expresionp',2,'p_expresion2','anaSintaxis.py',185),
+  ('expresionp -> LESSTHAN expresionpp','expresionp',2,'p_expresion2','anaSintaxis.py',186),
+  ('expresionp -> EQL expresionpp','expresionp',2,'p_expresion2','anaSintaxis.py',187),
+  ('expresionp -> NOTEQL expresionpp','expresionp',2,'p_expresion2','anaSintaxis.py',188),
+  ('expresionpp -> exp','expresionpp',1,'p_expresion3','anaSintaxis.py',192),
+  ('mainf -> bloque SEMICOLON','mainf',2,'p_main','anaSintaxis.py',196),
+  ('empty -> <empty>','empty',0,'p_empty','anaSintaxis.py',205),
 ]

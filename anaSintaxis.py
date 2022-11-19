@@ -25,14 +25,17 @@ def p_programa1(p):
     '''variable : varf FUNC SEMICOLON funciones
                 | FUNC SEMICOLON funciones
     '''
+
 def p_programa2(p):
     '''funciones : funcionf MAIN SEMICOLON maines
                 | MAIN SEMICOLON maines
     '''
+
 def p_programa3(p):
-    '''maines : mainf empty
+    '''maines : mainf
               | empty
     '''
+#Var
 def p_variable1(p):
     '''varf : tipo varp'''
 
@@ -48,64 +51,71 @@ def p_variable3(p):
 
 def p_variable4(p):
     '''varppp : COMMA varp
-              | empty
+              | SEMICOLON varpppp empty
     '''
 
+def p_variable5(p):
+    '''varpppp : varf
+               | empty
+    '''
+#Tipo
 def p_tipo(p):
-    '''tipo : INT 
-            | FLOAT 
+    '''tipo : INT
+            | FLOAT
     '''
+#Array
 def p_array(p):
-    '''array : LBRK exp RBRK '''
-
+    '''array : LBRK exp RBRK'''
+#Exp
 def p_exp(p):
     '''exp : termino PLUS exp
            | termino MINUS exp
            | termino empty
     '''
-
+#Termino
 def p_termino(p):
     '''termino : factor MULT termino
                | factor SLASH termino
                | factor empty
     '''
-
+#Factor
 def p_factor(p):
-    '''factor : LPAR exp RPAR 
-              | PLUS varcte 
-              | MINUS varcte 
-              | varcte 
+    '''factor : LPAR exp RPAR
+              | PLUS varcte
+              | MINUS varcte
+              | varcte
     '''
-
+#Varcte
 def p_varcte(p):
     '''varcte : ID
               | NUMFLOAT
               | NUMINT
     '''
-
+#FUNCION
 def p_funcion1(p):
-    '''funcionf : VOID funcionp
-                | tipo funcionp
-    '''
-
-def p_funcion2(p):
-    '''funcionp : ID LPAR funcionpp
+    '''funcionf : VOID ID LPAR funcionp RPAR bloque SEMICOLON
+                | tipo ID LPAR funcionp RPAR bloque RETURN LPAR exp RPAR SEMICOLON funcionpppp
     '''
 
 def p_funcion3(p):
-    '''funcionpp : tipo ID funcionppp
-                | funcionpppp
+    '''funcionp : funcionpp
+                | empty
     '''
 
 def p_funcion4(p):
-    '''funcionppp : COMMA funcionpp
-                  | funcionpppp
+    '''funcionpp : tipo ID funcionppp
     '''
 
 def p_funcion5(p):
-    '''funcionpppp : RPAR bloque
+    '''funcionppp : COMMA funcionpp
+                  | empty
     '''
 
+def p_funcion6(p):
+    '''funcionpppp : funcionf
+                   | empty
+    '''
+#BLOQUE
 def p_bloque1(p):
     '''bloque : LKEY bloquep
               | LKEY bloqueppp
@@ -120,48 +130,53 @@ def p_bloque3(p):
                 | bloqueppp
     '''
 
+def p_bloque4(p):
+    '''bloqueppp : RKEY
+    '''
+#Estatuto
 def p_estatuto(p):
     '''estatuto : asignacion
                 | condif
-                | conwhile
+                | condwhile
                 | conddowhile
                 | escritura
     '''
-
+#Asignacion
 def p_asignacion(p):
-    '''asignacion : ID AEQL exp 
+    '''asignacion : ID AEQL exp SEMICOLON
     '''
-
+#Escritura
 def p_escritura1(p):
     '''escritura : PRINT LPAR escriturap
     '''
 
 def p_escritura2(p):
-    '''escriturap : expresion escriturapp
+    '''escriturap : exp escriturapp
                   | STRING escriturapp
     '''
 
 def p_escritura3(p):
     '''escriturapp : COMMA escriturap
-                   | RPAR 
+                   | RPAR SEMICOLON
     '''
-
+#Condif
 def p_condif1(p):
     '''condif : IF LPAR expresion RPAR bloque condifp
     '''
 
 def p_condif2(p):
-    '''condifp : ELSE bloque
-               | empty
+    '''condifp : ELSE bloque SEMICOLON
+               | SEMICOLON
     '''
-
+#Condwhile
 def p_condwhile(p):
-    '''condwhile : WHILE LPAR expresion RPAR bloque
+    '''condwhile : WHILE LPAR expresion RPAR bloque SEMICOLON
     '''
-
+#Conddowhile
 def p_conddowhile(p):
-    '''conddowhile : DO bloque WHILE LPAR expresion RPAR
+    '''conddowhile : DO bloque WHILE LPAR expresion RPAR SEMICOLON
     '''
+#Expresion
 def p_expresion1(p):
     '''expresion : exp expresionp
     '''
@@ -178,8 +193,13 @@ def p_expresion3(p):
     '''
 
 def p_main(p):
-    '''mainf : bloque
+    '''mainf : bloque SEMICOLON
     '''
+
+def p_error(p):
+    print("Error de Sintaxis",p)
+    print("error en la linea "+ str(p.lineno))
+
 
 def p_empty(p):
      'empty :'
@@ -193,11 +213,27 @@ def p_empty(p):
 
 parser = yacc.yacc()
  
-while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-    if not s: continue
-    result = parser.parse(s)
-    print(result)
+# while True:
+#     try:
+#         s = input('calc > ')
+#     except EOFError:
+#         break
+#     if not s: continue
+#     result = parser.parse(s)
+#     print(result)
+
+
+if __name__ == '__main__':
+    if(len(sys.argv) > 1):
+            file = sys.argv[1]
+            try:
+                f = open(file, 'r')
+                data = f.read()
+                f.close()
+                if (yacc.parse(data, tracking=True) == "PROGRAMA COMPILADO"):
+                    print("Sintaxis valida")
+            except EOFError:
+                print(EOFError)
+    else:
+        print("No existe el archivo")
+

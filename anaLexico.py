@@ -11,7 +11,7 @@ import ply.lex as lex
 #Se utiliza para comentar en python
 
 #Tokens
-tokens = ['ID','NUMINT','NUMFLOAT','STRING','PLUS','MINUS','MULT','SLASH','AEQL','EQL','LESSTHAN','NOTEQL','MORETHAN','LPAR','RPAR','LKEY','RKEY','LBRK','RBRK','COMMA','DOT','SEMICOLON']
+tokens = ['ID','NUMINT','NUMFLOAT','STRING','PLUS','MINUS','MULT','SLASH','AEQL','EQL','LESSTHAN','NOTEQL','MORETHAN','LPAR','RPAR','LKEY','RKEY','LBRK','RBRK','COMMA','SEMICOLON']
 
 reservadas = { #Investigar como implementar palabras reservadas
     'int':'INT',
@@ -48,7 +48,7 @@ t_RKEY = r'\}'
 t_LBRK = r'\[' #Preguntar esto
 t_RBRK = r'\]'
 t_COMMA = r'\,'
-t_DOT = r'\.'
+# t_DOT = r'\.'    Si se usa agregar a tokens
 t_SEMICOLON = r'\;'
 
 #Detecta cuando es decimal
