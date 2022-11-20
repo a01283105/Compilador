@@ -9,13 +9,13 @@ from sys import stdin
 #tokens Pasados= ['ID','NUMBER','PLUS','MINUS','MULT','SLASH',
 #'AEQL','EQL','LESSTHAN','MORETHAN','LPAR','RPAR','LKEY','RKEY','LSQLBRK','RSQLBRK','COMMA','DOT','SEMICOLON']
 
-# precedence = (    #Preguntar que es precedence
-#     ('right', 'AEQL'),
-#     ('left', 'EQL','LESSTHAN', 'MORETHAN'), #No se si este hay que ponerlo
-#     ('left', 'PLUS', 'MINUS'),
-#     ('left', 'MULT', 'SLASH'),
-#     ('left', 'LPAR', 'RPAR')
-# )
+precedence = (    #Preguntar que es precedence
+    ('right', 'AEQL'),
+    ('left', 'EQL','LESSTHAN', 'MORETHAN', 'NOTEQL'), #No se si este hay que ponerlo
+    ('left', 'PLUS', 'MINUS'),
+    ('left', 'MULT', 'SLASH'),
+    ('left', 'LPAR', 'RPAR')
+)
 
 #<PROGRAMA>
 def p_programa(p):
@@ -90,7 +90,30 @@ def p_varcte(p):
     '''varcte : ID
               | NUMFLOAT
               | NUMINT
+              | llamafunc
     '''
+#Llamafunc
+
+def p_llamafunc1(p):
+    '''llamafunc : ID LPAR llamafuncp
+    '''
+
+def p_llamafunc2(p):
+    '''llamafuncp : llamafuncpp
+                 | llamafuncpppp
+    '''
+
+def p_llamafunc3(p):
+    '''llamafuncpp : tipo ID llamafuncppp 
+    '''
+def p_llamafunc4(p):
+    '''llamafuncppp : COMMA llamafuncpp
+                    | llamafuncpppp
+    '''
+def p_llamafunc5(p):
+    '''llamafuncpppp : RPAR 
+    '''
+
 #FUNCION
 def p_funcion1(p):
     '''funcionf : VOID ID LPAR funcionp RPAR bloque SEMICOLON
@@ -140,10 +163,16 @@ def p_estatuto(p):
                 | condwhile
                 | conddowhile
                 | escritura
+                | llamafunc SEMICOLON
     '''
 #Asignacion
 def p_asignacion(p):
-    '''asignacion : ID AEQL exp SEMICOLON
+    '''asignacion : ID array asignacionp
+                  | ID asignacionp
+    '''
+
+def p_asignacion2(p):
+    '''asignacionp : AEQL exp SEMICOLON
     '''
 #Escritura
 def p_escritura1(p):
@@ -203,6 +232,7 @@ def p_error(p):
 
 def p_empty(p):
      'empty :'
+     p[0] = None
      pass
 
 # file = sys.argv[1]

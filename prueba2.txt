@@ -11,12 +11,17 @@ int funcionf (){
 
 main;
 {
+
    x = 1;
    x = 1;
    y = 2;
-   z = (x+y*3)/4;
+   z = (x+y*3) + (funcion())/4;
    if (z > x) {
       print("hola mundo",(x+y));
    };
+
+   come();
+   come(int b);
+   come(int b,float c);
 };
    
