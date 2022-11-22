@@ -1,0 +1,14 @@
+var;
+   int a , b; 
+func;
+main;
+{
+    a = 1;
+    b = 4;
+    a = b - (a * 4);
+    if(a){
+        print("Gubai");
+    }else{
+        print("Bye");
+    };
+};

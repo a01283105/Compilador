@@ -178,6 +178,7 @@ def p_salidadoc(p):
     '''
     dicc = {
        "TablaV" : tablaV,
+       "TablaC" : tablaC,
        "Cuadruplos" : []
     }
     for x in range(len(cuadruplos)):
@@ -246,8 +247,8 @@ def p_varid(p):
                 tablaV[watcherF]["var"][p[-1]] = {"tipo" : watcherT, "memoria" : LocalesInt}
                 LocalesInt += 1
             else:
-                tablaV[watcherF]["var"][p[-1]] = {"tipo" : watcherT, "memoria" : LocalesFloat}
-                LocalesFloat += 1
+                tablaV[watcherF]["var"][p[-1]] = {"tipo" : watcherT, "memoria" : LocalesFlota}
+                LocalesFlota += 1
         else:
             print("La variable ya existe")
             sys.exit(1)
@@ -379,9 +380,20 @@ def p_auxtermino(p):
     '''
 #Factor
 def p_factor(p):
-    '''factor : LPAR expresionandor RPAR
+    '''factor : LPAR infondo expresion RPAR outfondo
               | varcte
     '''
+
+def p_infondo(p):
+    '''infondo :
+    '''
+    stackOperadores.append("(")
+
+def p_outfondo(p):
+    '''outfondo :
+    '''
+    stackOperadores.pop()
+
 #Varcte
 def p_varcte(p):
     '''varcte : ID meteopandos
@@ -396,20 +408,23 @@ def p_meteconst(p):
 
     global stackOperandos,stackTipos,ConstantesInt,ConstantesFloat,ConstantesString
     if isinstance(p[-1],int):
-        tablaC[p[-1]] = {"tipo" : "int", "memoria" : ConstantesInt}
+        if p[-1] not in tablaC:
+            tablaC[p[-1]] = {"tipo" : "int", "memoria" : ConstantesInt}
+            ConstantesInt += 1
         stackOperandos.append(tablaC[p[-1]]["memoria"])
         stackTipos.append("int")
-        ConstantesInt += 1
     elif isinstance(p[-1],float):
-        tablaC[p[-1]] = {"tipo" : "float", "memoria" : ConstantesFloat}
+        if p[-1] not in tablaC:
+            tablaC[p[-1]] = {"tipo" : "float", "memoria" : ConstantesFloat}
+            ConstantesFloat += 1
         stackOperandos.append(tablaC[p[-1]]["memoria"])
         stackTipos.append("float")
-        ConstantesFloat += 1
     else:
-        tablaC[p[-1]] = {"tipo" : "string", "memoria" : ConstantesString}
+        if p[-1] not in tablaC:
+            tablaC[p[-1]] = {"tipo" : "string", "memoria" : ConstantesString}
+            ConstantesString += 1
         stackOperandos.append(tablaC[p[-1]]["memoria"])
         stackTipos.append("string")
-        ConstantesString += 1
         
 
 #Llamafunc

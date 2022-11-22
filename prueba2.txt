@@ -6,6 +6,7 @@ func;
 
 void arroyo(int yei){
    print(2 + 2);
+   print("Hola Mundo");
 };
 
 void ueleley(int yei){
