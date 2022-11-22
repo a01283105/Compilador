@@ -33,6 +33,7 @@ reservadas = { #Investigar como implementar palabras reservadas
 tokens = tokens+list(reservadas.values())
 #Definir los tokens
 t_ignore = ' '
+t_STRING = r'"(.*?)"'
 # t_BLANK = '\s'   Si se usa agregar a tokens
 t_PLUS = r'\+'
 t_MINUS = r'\-'
@@ -70,10 +71,6 @@ def t_ID(t):
      r'[a-zA-Z][a-zA-Z_0-9]*'
      t.type = reservadas.get(t.value, 'ID')
      return t
-
-def t_STRING(t):
-    r'\".*\"'
-    return t
 
 #Detecta una nueva linea
 def t_newline(t):

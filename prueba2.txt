@@ -4,13 +4,18 @@ var;
 
 func;
 
+void arroyo(int yei){
+   print(2 + 2);
+};
+
+void ueleley(int yei){
+   a = yei + 2;
+};
+
 main;
 {
    a = 3;
-   print(y);
-   do{
-      print(x);
-   }while(a > 5);
+   y = a + a;
    print(x);
 };
    
