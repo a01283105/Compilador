@@ -1,0 +1,32 @@
+var;
+   int a , b, cont; 
+   float g;
+func;
+
+void halo(int x, float lalo){
+  x = 3;
+  a = 3 + 7 * (x + 3);  
+};
+
+void raul(){
+    b = 6 + 8;
+};
+
+void juan(){
+    b = 6 + 8 - 2;
+    g = 1.0 * 9.0;
+};
+
+main;
+{
+    a = 10;
+    b = 2 + 2;
+    g = 4.0 / 3.0;
+    do{
+        print(a);
+        a = a - 1;
+    }while(a > 1);
+    print(g);
+    print(b);
+    print("La anterior fue la a");
+};

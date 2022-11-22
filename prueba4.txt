@@ -1,14 +1,23 @@
 var;
-   int a , b; 
+   int a , b, cont; 
 func;
+
+void halo(int x, float lalo){
+  a = 3 + 7;  
+};
+
+void raul(){
+    b = 6 + 8;
+};
+
 main;
 {
+    cont = 11;
     a = 1;
     b = 4;
     a = b - (a * 4);
-    if(a){
-        print("Gubai");
-    }else{
-        print("Bye");
+    while(cont > 1){
+        cont = cont - 1;
+        print(cont);
     };
 };

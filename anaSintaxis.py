@@ -166,12 +166,15 @@ ConstantesInt = 37000
 ConstantesFloat = 42000
 ConstantesString = 47000
 
-tablaV = {"global":{"type":"void","var":{}}}
+variable1 = 0
+variable2 = 0
+
+tablaV = {"global":{"type":"void","var":{}, "ContadorT" : {"int" : 0 ,"float" : 0, "pointers" : 0}}}
 tablaC = {}
 
 #<PROGRAMA>
 def p_programa(p):
-    '''programa : VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON maines debug salidadoc'''
+    '''programa : VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher maines debug salidadoc'''
 
 def p_salidadoc(p):
     '''salidadoc :
@@ -201,6 +204,11 @@ def p_debug(p):
         x.mistring()
         cont += 1
 
+def p_resetwatcher(p):
+    '''resetwatcher :
+    '''
+    global watcherF
+    watcherF = "global"
 def p_programa1(p):
     '''variable : varf 
                 | empty
@@ -212,7 +220,7 @@ def p_programa2(p):
     '''
 
 def p_programa3(p):
-    '''maines : mainf
+    '''maines : mainf resetmem
               | empty
     '''
 #Var
@@ -286,7 +294,7 @@ def p_exp(p):
 def p_cuadexp(p):
     '''cuadexp :
     '''
-    global stackOperadores,stackOperandos,stackTipos,cuadruplos,contador,TemporalesFloat,TemporalesInt
+    global stackOperadores,stackOperandos,stackTipos,cuadruplos,contador,TemporalesFloat,TemporalesInt,variable2,variable1
     if len(stackOperadores) != 0:
         if stackOperadores[-1] == '+':
             oper = stackOperadores.pop()
@@ -300,10 +308,14 @@ def p_cuadexp(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                    
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
+                
                 contador += 1
         elif stackOperadores[-1] == '-':
             oper = stackOperadores.pop()
@@ -317,10 +329,12 @@ def p_cuadexp(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
                 contador += 1
 
 def p_auxexp(p):
@@ -350,10 +364,12 @@ def p_cuadtermino(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
                 contador += 1
         elif stackOperadores[-1] == '/':
             oper = stackOperadores.pop()
@@ -367,10 +383,12 @@ def p_cuadtermino(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
                 contador += 1
 
 def p_auxtermino(p):
@@ -458,11 +476,15 @@ def p_funcion1(p):
 def p_resetmem(p):
     '''resetmem :
     '''
-    global LocalesFlota,LocalesInt,TemporalesFloat,TemporalesInt
+    global LocalesFlota,LocalesInt,TemporalesFloat,TemporalesInt,variable1,variable2
+    # print(watcherF,TemporalesInt - 22000)
+    tablaV[watcherF]["ContadorT"]["int"] = TemporalesInt - 22000
+    tablaV[watcherF]["ContadorT"]["float"] = TemporalesFloat - 27000
     LocalesInt = 2000
     LocalesFlota = 7000
     TemporalesInt = 22000
     TemporalesFloat = 27000
+
 
 def p_funciontipo(p):
     ''' funciontipo :
@@ -477,9 +499,9 @@ def p_funcionName(p):
     watcherF = p[-1]
     if p[-1] not in tablaV :
         if watcherT == "void" :
-            tablaV[p[-1]] = {"type":"void","var":{}}
+            tablaV[p[-1]] = {"type":"void","var":{},"ContadorT" : {"int" : 0 ,"float" : 0, "pointers" : 0}}
         else :
-            tablaV[p[-1]] = {"type":watcherT,"var":{}}
+            tablaV[p[-1]] = {"type":watcherT,"var":{},"ContadorT" : {"int" : 0 ,"float" : 0, "pointers" : 0}}
     else:
         print("Esta funcion ya fue declarada")
         sys.exit(1)
@@ -559,10 +581,12 @@ def p_cuadexpresionandor(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
                 contador += 1
         elif stackOperadores[-1] == 'or':
             oper = stackOperadores.pop()
@@ -576,10 +600,12 @@ def p_cuadexpresionandor(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
                 contador += 1
 
 def p_auxandor(p):
@@ -644,7 +670,7 @@ def p_cuadescritura(p):
         if stackOperadores[-1] == 'print':
             oper = stackOperadores.pop()
             operi = stackOperandos.pop()
-            print(watcherF)
+            
             cuadruplos.append(cuad(oper,None,None,operi))
             stackTipos.pop()
             contador += 1
@@ -775,10 +801,12 @@ def p_cuadexpresion(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
                 contador += 1
         elif stackOperadores[-1] == '<':
             oper = stackOperadores.pop()
@@ -792,10 +820,12 @@ def p_cuadexpresion(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
                 contador += 1
         elif stackOperadores[-1] == '==':
             oper = stackOperadores.pop()
@@ -809,10 +839,12 @@ def p_cuadexpresion(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
                 contador += 1
         elif stackOperadores[-1] == '!=':
             oper = stackOperadores.pop()
@@ -826,10 +858,12 @@ def p_cuadexpresion(p):
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesInt))
                     stackOperandos.append(TemporalesInt)
                     TemporalesInt += 1
+                
                 elif tablaTipos[tipoi][tipod][oper] == "float":
                     cuadruplos.append(cuad(oper,operi,operd,TemporalesFloat))
                     stackOperandos.append(TemporalesFloat)
                     TemporalesFloat += 1
+                    
                 contador += 1
 def p_expresion2(p):
     '''expresionp : MORETHAN meteopdores expresion

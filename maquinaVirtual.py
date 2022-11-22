@@ -60,9 +60,31 @@ for x in codigoOBJ["TablaC"]:
         constantesFloat.append(float(x))
     else:
         constantesString.append(x[1 : -1])
-print(constantesString)
-print(constantesInt)
-print(constantesFloat)
+
+for x in codigoOBJ["TablaV"]:
+    # print(codigoOBJ["TablaV"][x]["ContadorT"])
+    for y in range(0,codigoOBJ["TablaV"][x]["ContadorT"]["int"]):
+        temporalesInt.append(tipoDefault("int"))
+    for z in range(0,codigoOBJ["TablaV"][x]["ContadorT"]["float"]):
+        temporalesFloat.append(tipoDefault("float"))
+
+for x in codigoOBJ["TablaV"]:
+    if x == "global":
+        continue
+    cantidadInt = 0
+    cantidadFloat = 0
+    for y in codigoOBJ["TablaV"][x]["var"]:
+        if codigoOBJ["TablaV"][x]["var"][y]["tipo"] == "int":
+            cantidadInt += 1
+        elif codigoOBJ["TablaV"][x]["var"][y]["tipo"] == "float":
+            cantidadFloat += 1
+
+    print(x,cantidadInt,cantidadFloat)
+    while len(localInt) < cantidadInt:
+        localInt.append(tipoDefault("int"))
+    while len(localFloat) < cantidadFloat:
+        localFloat.append(tipoDefault("float"))
+    
 
 def leer(direccion):
     if LocalesInt <= direccion and direccion < LocalesFlota:
@@ -82,15 +104,15 @@ def leer(direccion):
     elif TemporalesInt <= direccion and direccion < TemporalesFloat:
         direccion -= TemporalesInt
         #Meter todas asi similar
-        return direccion
+        return temporalesInt[direccion]
     elif TemporalesFloat <= direccion and direccion < TemporalesPointers:
         direccion -= TemporalesFloat
         #Meter todas asi similar
-        return direccion
+        return temporalesFloat[direccion]
     elif TemporalesPointers <= direccion and direccion < ConstantesInt:
         direccion -= TemporalesPointers
         #Meter todas asi similar
-        return direccion
+        return temporalesPointers[direccion]
     elif ConstantesInt <= direccion and direccion < ConstantesFloat:
         direccion -= ConstantesInt
         return constantesInt[direccion]
@@ -107,13 +129,11 @@ def write(direccion, val):
     if LocalesInt <= direccion and direccion < LocalesFlota:
         direccion -= LocalesInt
         #Meter todas asi similar
-        # localInt[direccion] = val
-        pass
+        localInt[direccion] = val
     elif LocalesFlota <= direccion and direccion < GlobalesInt:
         direccion -= LocalesFlota
         #Meter todas asi similar
-        # localFloat[direccion] = val
-        pass
+        localFloat[direccion] = val
     elif GlobalesInt <= direccion and direccion < GlobalesFloat:
         direccion -= GlobalesInt
         globalInt[direccion] = val
@@ -123,15 +143,15 @@ def write(direccion, val):
     elif TemporalesInt <= direccion and direccion < TemporalesFloat:
         direccion -= TemporalesInt
         #Meter todas asi similar
-        pass
+        temporalesInt[direccion] = val
     elif TemporalesFloat <= direccion and direccion < TemporalesPointers:
         direccion -= TemporalesFloat
         #Meter todas asi similar
-        pass
+        temporalesFloat[direccion] = val
     elif TemporalesPointers <= direccion and direccion < ConstantesInt:
         direccion -= TemporalesPointers
         #Meter todas asi similar
-        pass
+        temporalesPointers[direccion] = val
     elif ConstantesInt <= direccion and direccion < ConstantesFloat:
         direccion -= ConstantesInt
         constantesInt[direccion] = val
