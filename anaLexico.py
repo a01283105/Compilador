@@ -94,6 +94,6 @@ analizador = lex.lex()
 # analizador.input(cadena)
 
 # while True:
-#     tok = analizador.token()       #35:04
+#     tok = analizador.token()
 #     if not tok : break
 #     print(tok)
