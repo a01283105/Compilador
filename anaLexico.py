@@ -11,7 +11,7 @@ import ply.lex as lex
 #Se utiliza para comentar en python
 
 #Tokens
-tokens = ['ID','NUMINT','NUMFLOAT','STRING','PLUS','MINUS','MULT','SLASH','AEQL','EQL','LESSTHAN','NOTEQL','MORETHAN','LPAR','RPAR','LKEY','RKEY','LBRK','RBRK','COMMA','SEMICOLON']
+tokens = ['ID','NUMINT','NUMFLOAT','STRING','PLUS','MINUS','MULT','SLASH','AEQL','EQL','LESSTHAN','NOTEQL','MORETHAN','AND','OR','LPAR','RPAR','LKEY','RKEY','LBRK','RBRK','COMMA','SEMICOLON']
 
 reservadas = { #Investigar como implementar palabras reservadas
     'int':'INT',
@@ -26,7 +26,9 @@ reservadas = { #Investigar como implementar palabras reservadas
     'func':'FUNC',
     'main':'MAIN',
     'void' : 'VOID',
-    'return' : 'RETURN'
+    'return' : 'RETURN',
+    'and' : 'AND',
+    'or' : 'OR'
 }
 tokens = tokens+list(reservadas.values())
 #Definir los tokens
@@ -59,7 +61,7 @@ def t_NUMFLOAT(t):
 
 #Detecta cuando es entero
 def t_NUMINT(t):
-     r'\d+'
+     r'[-]?[0-9]+'
      t.value = int(t.value)
      return t
 

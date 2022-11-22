@@ -1,15 +1,20 @@
-class VarsTable:
+class tablaVariables:
     '''
     Clase para la generación del directorio de funciones con la tabla de variables de cada una así como las funciones asociadas para la manipulación del directorio correspondiente
     '''
-    # def __init__(self):
-    #     self.tabla = {  #Lo que se inluira despues de las variables globales sera el nombre de las funciones el tipo y el return 
-    #         'global' : { 
-    #             'nombre' : {},
-    #             'tipo' : ,
-    #             'valor' : ''
-    #         }
-    #     }
+    def __init__(self):
+        self.tabla = {  #Lo que se inluira despues de las variables globales sera el nombre de las funciones el tipo y el return 
+                    "global" : {}
+            }
+        self.initialized = False
+        #Cuando la quiera iniciar utilizar la funcion de tablaVariables()
+    
+    #returnVal = valor de retorno
+    def insertarFunc(self, nombreFunc, tipoFunc){
+        self.tabla[nombreFunc] = {"tipo" : tipoFunc}
+    }
+
+    
 #     tablaFunc = {
 #   "global": {"nombreFunc" : "a", "tipo" : "int", "direccion" : 0 , "valor" : "NULL"},
 #   "globall": {"a" : {"int" : {21869 : {"null"}}}},
@@ -18,24 +23,7 @@ class VarsTable:
 # }
 # if tablaFunc["globall"] == "a" : 
 # 	print(tablaFunc["globall"]["a"])
-
-
-
-    def __init__(self):
-        self.table = {
-            'global': {
-                'program': '',
-                'vars': {}
-            },
-            'star': {
-                'type': 'void',
-                'vars': {},
-                'begin': None
-            }
-        }
-        self.current_type = ''
-        self.current_scope = 'global'
-        self.initialized = False
+        
 
     def FunDirectory(self, fun_id, type, start):
         '''
