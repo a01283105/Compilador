@@ -1,11 +1,13 @@
 var;
    int a , b, cont; 
    float g;
+   int x;
 func;
 
-void halo(int x, float lalo){
-  x = 3;
-  a = 3 + 7 * (x + 3);  
+void halo(int lalo){
+  lalo = 3;
+  b = 3 + 7 * (x + 3);  
+  print(a);
 };
 
 void raul(){

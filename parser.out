@@ -4,24 +4,24 @@ Grammar
 
 Rule 0     S' -> programa
 Rule 1     programa -> VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher maines debug salidadoc
-Rule 2     salidadoc -> <empty>
-Rule 3     debug -> <empty>
-Rule 4     resetwatcher -> <empty>
-Rule 5     variable -> varf
-Rule 6     variable -> empty
-Rule 7     funciones -> funcionf
-Rule 8     funciones -> empty
-Rule 9     maines -> mainf resetmem
-Rule 10    maines -> empty
+Rule 2     variable -> varf
+Rule 3     variable -> empty
+Rule 4     funciones -> funcionf
+Rule 5     funciones -> empty
+Rule 6     maines -> mainf resetmem
+Rule 7     maines -> empty
+Rule 8     salidadoc -> <empty>
+Rule 9     debug -> <empty>
+Rule 10    resetwatcher -> <empty>
 Rule 11    varf -> tipo varp
 Rule 12    varp -> ID array varpp
 Rule 13    varp -> ID varid varpp
-Rule 14    varid -> <empty>
-Rule 15    varpp -> varppp
-Rule 16    varppp -> COMMA varp
-Rule 17    varppp -> SEMICOLON varpppp empty
-Rule 18    varpppp -> varf
-Rule 19    varpppp -> empty
+Rule 14    varpp -> varppp
+Rule 15    varppp -> COMMA varp
+Rule 16    varppp -> SEMICOLON varpppp empty
+Rule 17    varpppp -> varf
+Rule 18    varpppp -> empty
+Rule 19    varid -> <empty>
 Rule 20    tipo -> INT funciontipo
 Rule 21    tipo -> FLOAT funciontipo
 Rule 22    array -> LBRK exp RBRK
@@ -47,22 +47,22 @@ Rule 41    meteconst -> <empty>
 Rule 42    llamafunc -> ID LPAR llamafuncp
 Rule 43    llamafuncp -> llamafuncpp
 Rule 44    llamafuncp -> llamafuncpppp
-Rule 45    llamafuncpp -> tipo ID llamafuncppp
+Rule 45    llamafuncpp -> ID llamafuncppp
 Rule 46    llamafuncppp -> COMMA llamafuncpp
 Rule 47    llamafuncppp -> llamafuncpppp
 Rule 48    llamafuncpppp -> RPAR
 Rule 49    funcionf -> VOID funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp
 Rule 50    funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
-Rule 51    resetmem -> <empty>
-Rule 52    funciontipo -> <empty>
-Rule 53    funcionid -> <empty>
-Rule 54    funcionp -> funcionpp
-Rule 55    funcionp -> empty
-Rule 56    funcionpp -> tipo ID varid funcionppp
-Rule 57    funcionppp -> COMMA funcionpp
-Rule 58    funcionppp -> empty
-Rule 59    funcionpppp -> funcionf
-Rule 60    funcionpppp -> empty
+Rule 51    funciontipo -> <empty>
+Rule 52    funcionid -> <empty>
+Rule 53    funcionp -> funcionpp
+Rule 54    funcionp -> empty
+Rule 55    funcionpp -> tipo ID varid funcionppp
+Rule 56    funcionppp -> COMMA funcionpp
+Rule 57    funcionppp -> empty
+Rule 58    funcionpppp -> funcionf
+Rule 59    funcionpppp -> empty
+Rule 60    resetmem -> <empty>
 Rule 61    bloque -> LKEY bloquep
 Rule 62    bloque -> LKEY bloqueppp
 Rule 63    bloquep -> estatuto bloquepp
@@ -89,15 +89,15 @@ Rule 83    meteopandos -> <empty>
 Rule 84    escritura -> PRINT meteopdores LPAR escriturap
 Rule 85    escriturap -> expresion cuadescritura escriturapp
 Rule 86    escriturap -> STRING meteconst cuadescriturastring escriturapp
-Rule 87    cuadescritura -> <empty>
-Rule 88    cuadescriturastring -> <empty>
-Rule 89    escriturapp -> COMMA escriturap
-Rule 90    escriturapp -> RPAR SEMICOLON
+Rule 87    escriturapp -> COMMA escriturap
+Rule 88    escriturapp -> RPAR SEMICOLON
+Rule 89    cuadescritura -> <empty>
+Rule 90    cuadescriturastring -> <empty>
 Rule 91    condif -> IF LPAR expresion cuadcondif RPAR bloque condifp cuadrellenoif
-Rule 92    cuadcondif -> <empty>
-Rule 93    cuadrellenoif -> <empty>
-Rule 94    condifp -> ELSE cuadconifelse bloque SEMICOLON
-Rule 95    condifp -> SEMICOLON
+Rule 92    condifp -> ELSE cuadconifelse bloque SEMICOLON
+Rule 93    condifp -> SEMICOLON
+Rule 94    cuadcondif -> <empty>
+Rule 95    cuadrellenoif -> <empty>
 Rule 96    cuadconifelse -> <empty>
 Rule 97    condwhile -> WHILE LPAR guardarsal expresion quadcondwhile RPAR bloque rellenocondwhile SEMICOLON
 Rule 98    guardarsal -> <empty>
@@ -107,12 +107,12 @@ Rule 101   conddowhile -> DO guardardowhile bloque WHILE LPAR expresion quadcond
 Rule 102   guardardowhile -> <empty>
 Rule 103   quadconddowhile -> <empty>
 Rule 104   expresion -> exp cuadexpresion expresionp
-Rule 105   cuadexpresion -> <empty>
-Rule 106   expresionp -> MORETHAN meteopdores expresion
-Rule 107   expresionp -> LESSTHAN meteopdores expresion
-Rule 108   expresionp -> EQL meteopdores expresion
-Rule 109   expresionp -> NOTEQL meteopdores expresion
-Rule 110   expresionp -> empty
+Rule 105   expresionp -> MORETHAN meteopdores expresion
+Rule 106   expresionp -> LESSTHAN meteopdores expresion
+Rule 107   expresionp -> EQL meteopdores expresion
+Rule 108   expresionp -> NOTEQL meteopdores expresion
+Rule 109   expresionp -> empty
+Rule 110   cuadexpresion -> <empty>
 Rule 111   mainf -> bloque SEMICOLON
 Rule 112   empty -> <empty>
 
@@ -120,24 +120,24 @@ Terminals, with rules where they appear
 
 AEQL                 : 75
 AND                  : 78
-COMMA                : 16 46 57 89
+COMMA                : 15 46 56 87
 DO                   : 101
-ELSE                 : 94
-EQL                  : 108
+ELSE                 : 92
+EQL                  : 107
 FLOAT                : 21
 FUNC                 : 1
-ID                   : 12 13 37 42 45 49 50 56 73 74
+ID                   : 12 13 37 42 45 49 50 55 73 74
 IF                   : 91
 INT                  : 20
 LBRK                 : 22
-LESSTHAN             : 107
+LESSTHAN             : 106
 LKEY                 : 61 62
 LPAR                 : 33 42 49 50 50 84 91 97 101
 MAIN                 : 1
 MINUS                : 26
-MORETHAN             : 106
+MORETHAN             : 105
 MULT                 : 30
-NOTEQL               : 109
+NOTEQL               : 108
 NUMFLOAT             : 38
 NUMINT               : 39
 OR                   : 79
@@ -146,8 +146,8 @@ PRINT                : 84
 RBRK                 : 22
 RETURN               : 50
 RKEY                 : 66
-RPAR                 : 33 48 49 50 50 90 91 97 101
-SEMICOLON            : 1 1 1 17 49 50 72 75 90 94 95 97 101 111
+RPAR                 : 33 48 49 50 50 88 91 97 101
+SEMICOLON            : 1 1 1 16 49 50 72 75 88 92 93 97 101 111
 SLASH                : 31
 STRING               : 86
 VAR                  : 1
@@ -163,7 +163,7 @@ asignacionp          : 73 74
 auxandor             : 76
 auxexp               : 23
 auxtermino           : 28
-bloque               : 49 50 91 94 97 101 111
+bloque               : 49 50 91 92 97 101 111
 bloquep              : 61 64
 bloquepp             : 63
 bloqueppp            : 62 65
@@ -173,7 +173,7 @@ condifp              : 91
 condwhile            : 69
 cuadass              : 75
 cuadcondif           : 91
-cuadconifelse        : 94
+cuadconifelse        : 92
 cuadescritura        : 85
 cuadescriturastring  : 86
 cuadexp              : 23
@@ -182,22 +182,22 @@ cuadexpresionandor   : 76
 cuadrellenoif        : 91
 cuadtermino          : 28
 debug                : 1
-empty                : 6 8 10 17 19 27 32 55 58 60 80 110
+empty                : 3 5 7 16 18 27 32 54 57 59 80 109
 escritura            : 71
-escriturap           : 84 89
+escriturap           : 84 87
 escriturapp          : 85 86
 estatuto             : 63
 exp                  : 22 25 26 50 104
-expresion            : 33 76 85 91 97 101 106 107 108 109
+expresion            : 33 76 85 91 97 101 105 106 107 108
 expresionandor       : 75 78 79
 expresionp           : 104
 factor               : 28
 funciones            : 1
-funcionf             : 7 59
+funcionf             : 4 58
 funcionid            : 49 50
 funcionp             : 49 50
-funcionpp            : 54 57
-funcionppp           : 56
+funcionpp            : 53 56
+funcionppp           : 55
 funcionpppp          : 49 50
 funciontipo          : 20 21 49
 guardardowhile       : 101
@@ -209,28 +209,28 @@ llamafuncpp          : 43 46
 llamafuncppp         : 45
 llamafuncpppp        : 44 47
 maines               : 1
-mainf                : 9
+mainf                : 6
 meteconst            : 38 39 86
 meteopandos          : 37 74
-meteopdores          : 25 26 30 31 75 78 79 84 106 107 108 109
+meteopdores          : 25 26 30 31 75 78 79 84 105 106 107 108
 outfondo             : 33
 programa             : 0
 quadconddowhile      : 101
 quadcondwhile        : 97
 rellenocondwhile     : 97
-resetmem             : 9 49 50
+resetmem             : 6 49 50
 resetwatcher         : 1
 salidadoc            : 1
 termino              : 23 30 31
-tipo                 : 11 45 50 56
+tipo                 : 11 50 55
 varcte               : 34
-varf                 : 5 18
+varf                 : 2 17
 variable             : 1
-varid                : 13 56
-varp                 : 11 16
+varid                : 13 55
+varp                 : 11 15
 varpp                : 12 13
-varppp               : 15
-varpppp              : 17
+varppp               : 14
+varpppp              : 16
 
 Parsing method: LALR
 
@@ -259,8 +259,8 @@ state 2
 state 3
 
     (1) programa -> VAR SEMICOLON . variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher maines debug salidadoc
-    (5) variable -> . varf
-    (6) variable -> . empty
+    (2) variable -> . varf
+    (3) variable -> . empty
     (11) varf -> . tipo varp
     (112) empty -> .
     (20) tipo -> . INT funciontipo
@@ -284,16 +284,16 @@ state 4
 
 state 5
 
-    (5) variable -> varf .
+    (2) variable -> varf .
 
-    FUNC            reduce using rule 5 (variable -> varf .)
+    FUNC            reduce using rule 2 (variable -> varf .)
 
 
 state 6
 
-    (6) variable -> empty .
+    (3) variable -> empty .
 
-    FUNC            reduce using rule 6 (variable -> empty .)
+    FUNC            reduce using rule 3 (variable -> empty .)
 
 
 state 7
@@ -309,18 +309,18 @@ state 7
 state 8
 
     (20) tipo -> INT . funciontipo
-    (52) funciontipo -> .
+    (51) funciontipo -> .
 
-    ID              reduce using rule 52 (funciontipo -> .)
+    ID              reduce using rule 51 (funciontipo -> .)
 
     funciontipo                    shift and go to state 13
 
 state 9
 
     (21) tipo -> FLOAT . funciontipo
-    (52) funciontipo -> .
+    (51) funciontipo -> .
 
-    ID              reduce using rule 52 (funciontipo -> .)
+    ID              reduce using rule 51 (funciontipo -> .)
 
     funciontipo                    shift and go to state 14
 
@@ -343,11 +343,11 @@ state 12
     (12) varp -> ID . array varpp
     (13) varp -> ID . varid varpp
     (22) array -> . LBRK exp RBRK
-    (14) varid -> .
+    (19) varid -> .
 
     LBRK            shift and go to state 18
-    COMMA           reduce using rule 14 (varid -> .)
-    SEMICOLON       reduce using rule 14 (varid -> .)
+    COMMA           reduce using rule 19 (varid -> .)
+    SEMICOLON       reduce using rule 19 (varid -> .)
 
     array                          shift and go to state 16
     varid                          shift and go to state 17
@@ -369,8 +369,8 @@ state 14
 state 15
 
     (1) programa -> VAR SEMICOLON variable FUNC SEMICOLON . funciones MAIN SEMICOLON resetwatcher maines debug salidadoc
-    (7) funciones -> . funcionf
-    (8) funciones -> . empty
+    (4) funciones -> . funcionf
+    (5) funciones -> . empty
     (49) funcionf -> . VOID funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp
     (50) funcionf -> . tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
     (112) empty -> .
@@ -390,9 +390,9 @@ state 15
 state 16
 
     (12) varp -> ID array . varpp
-    (15) varpp -> . varppp
-    (16) varppp -> . COMMA varp
-    (17) varppp -> . SEMICOLON varpppp empty
+    (14) varpp -> . varppp
+    (15) varppp -> . COMMA varp
+    (16) varppp -> . SEMICOLON varpppp empty
 
     COMMA           shift and go to state 26
     SEMICOLON       shift and go to state 27
@@ -403,9 +403,9 @@ state 16
 state 17
 
     (13) varp -> ID varid . varpp
-    (15) varpp -> . varppp
-    (16) varppp -> . COMMA varp
-    (17) varppp -> . SEMICOLON varpppp empty
+    (14) varpp -> . varppp
+    (15) varppp -> . COMMA varp
+    (16) varppp -> . SEMICOLON varpppp empty
 
     COMMA           shift and go to state 26
     SEMICOLON       shift and go to state 27
@@ -446,24 +446,24 @@ state 19
 
 state 20
 
-    (7) funciones -> funcionf .
+    (4) funciones -> funcionf .
 
-    MAIN            reduce using rule 7 (funciones -> funcionf .)
+    MAIN            reduce using rule 4 (funciones -> funcionf .)
 
 
 state 21
 
-    (8) funciones -> empty .
+    (5) funciones -> empty .
 
-    MAIN            reduce using rule 8 (funciones -> empty .)
+    MAIN            reduce using rule 5 (funciones -> empty .)
 
 
 state 22
 
     (49) funcionf -> VOID . funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp
-    (52) funciontipo -> .
+    (51) funciontipo -> .
 
-    ID              reduce using rule 52 (funciontipo -> .)
+    ID              reduce using rule 51 (funciontipo -> .)
 
     funciontipo                    shift and go to state 39
 
@@ -483,14 +483,14 @@ state 24
 
 state 25
 
-    (15) varpp -> varppp .
+    (14) varpp -> varppp .
 
-    FUNC            reduce using rule 15 (varpp -> varppp .)
+    FUNC            reduce using rule 14 (varpp -> varppp .)
 
 
 state 26
 
-    (16) varppp -> COMMA . varp
+    (15) varppp -> COMMA . varp
     (12) varp -> . ID array varpp
     (13) varp -> . ID varid varpp
 
@@ -500,9 +500,9 @@ state 26
 
 state 27
 
-    (17) varppp -> SEMICOLON . varpppp empty
-    (18) varpppp -> . varf
-    (19) varpppp -> . empty
+    (16) varppp -> SEMICOLON . varpppp empty
+    (17) varpppp -> . varf
+    (18) varpppp -> . empty
     (11) varf -> . tipo varp
     (112) empty -> .
     (20) tipo -> . INT funciontipo
@@ -710,22 +710,22 @@ state 39
 state 40
 
     (50) funcionf -> tipo ID . funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
-    (53) funcionid -> .
+    (52) funcionid -> .
 
-    LPAR            reduce using rule 53 (funcionid -> .)
+    LPAR            reduce using rule 52 (funcionid -> .)
 
     funcionid                      shift and go to state 55
 
 state 41
 
-    (16) varppp -> COMMA varp .
+    (15) varppp -> COMMA varp .
 
-    FUNC            reduce using rule 16 (varppp -> COMMA varp .)
+    FUNC            reduce using rule 15 (varppp -> COMMA varp .)
 
 
 state 42
 
-    (17) varppp -> SEMICOLON varpppp . empty
+    (16) varppp -> SEMICOLON varpppp . empty
     (112) empty -> .
 
     FUNC            reduce using rule 112 (empty -> .)
@@ -734,16 +734,16 @@ state 42
 
 state 43
 
-    (19) varpppp -> empty .
+    (18) varpppp -> empty .
 
-    FUNC            reduce using rule 19 (varpppp -> empty .)
+    FUNC            reduce using rule 18 (varpppp -> empty .)
 
 
 state 44
 
-    (18) varpppp -> varf .
+    (17) varpppp -> varf .
 
-    FUNC            reduce using rule 18 (varpppp -> varf .)
+    FUNC            reduce using rule 17 (varpppp -> varf .)
 
 
 state 45
@@ -856,19 +856,15 @@ state 50
     (42) llamafunc -> ID LPAR . llamafuncp
     (43) llamafuncp -> . llamafuncpp
     (44) llamafuncp -> . llamafuncpppp
-    (45) llamafuncpp -> . tipo ID llamafuncppp
+    (45) llamafuncpp -> . ID llamafuncppp
     (48) llamafuncpppp -> . RPAR
-    (20) tipo -> . INT funciontipo
-    (21) tipo -> . FLOAT funciontipo
 
+    ID              shift and go to state 67
     RPAR            shift and go to state 71
-    INT             shift and go to state 8
-    FLOAT           shift and go to state 9
 
-    llamafuncp                     shift and go to state 67
-    llamafuncpp                    shift and go to state 68
-    llamafuncpppp                  shift and go to state 69
-    tipo                           shift and go to state 70
+    llamafuncp                     shift and go to state 68
+    llamafuncpp                    shift and go to state 69
+    llamafuncpppp                  shift and go to state 70
 
 state 51
 
@@ -913,19 +909,19 @@ state 52
 state 53
 
     (1) programa -> VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON . resetwatcher maines debug salidadoc
-    (4) resetwatcher -> .
+    (10) resetwatcher -> .
 
-    LKEY            reduce using rule 4 (resetwatcher -> .)
-    $end            reduce using rule 4 (resetwatcher -> .)
+    LKEY            reduce using rule 10 (resetwatcher -> .)
+    $end            reduce using rule 10 (resetwatcher -> .)
 
     resetwatcher                   shift and go to state 72
 
 state 54
 
     (49) funcionf -> VOID funciontipo ID . funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp
-    (53) funcionid -> .
+    (52) funcionid -> .
 
-    LPAR            reduce using rule 53 (funcionid -> .)
+    LPAR            reduce using rule 52 (funcionid -> .)
 
     funcionid                      shift and go to state 73
 
@@ -938,9 +934,9 @@ state 55
 
 state 56
 
-    (17) varppp -> SEMICOLON varpppp empty .
+    (16) varppp -> SEMICOLON varpppp empty .
 
-    FUNC            reduce using rule 17 (varppp -> SEMICOLON varpppp empty .)
+    FUNC            reduce using rule 16 (varppp -> SEMICOLON varpppp empty .)
 
 
 state 57
@@ -1069,21 +1065,34 @@ state 65
 state 66
 
     (104) expresion -> exp . cuadexpresion expresionp
-    (105) cuadexpresion -> .
+    (110) cuadexpresion -> .
 
-    MORETHAN        reduce using rule 105 (cuadexpresion -> .)
-    LESSTHAN        reduce using rule 105 (cuadexpresion -> .)
-    EQL             reduce using rule 105 (cuadexpresion -> .)
-    NOTEQL          reduce using rule 105 (cuadexpresion -> .)
-    RPAR            reduce using rule 105 (cuadexpresion -> .)
-    COMMA           reduce using rule 105 (cuadexpresion -> .)
-    AND             reduce using rule 105 (cuadexpresion -> .)
-    OR              reduce using rule 105 (cuadexpresion -> .)
-    SEMICOLON       reduce using rule 105 (cuadexpresion -> .)
+    MORETHAN        reduce using rule 110 (cuadexpresion -> .)
+    LESSTHAN        reduce using rule 110 (cuadexpresion -> .)
+    EQL             reduce using rule 110 (cuadexpresion -> .)
+    NOTEQL          reduce using rule 110 (cuadexpresion -> .)
+    RPAR            reduce using rule 110 (cuadexpresion -> .)
+    COMMA           reduce using rule 110 (cuadexpresion -> .)
+    AND             reduce using rule 110 (cuadexpresion -> .)
+    OR              reduce using rule 110 (cuadexpresion -> .)
+    SEMICOLON       reduce using rule 110 (cuadexpresion -> .)
 
     cuadexpresion                  shift and go to state 80
 
 state 67
+
+    (45) llamafuncpp -> ID . llamafuncppp
+    (46) llamafuncppp -> . COMMA llamafuncpp
+    (47) llamafuncppp -> . llamafuncpppp
+    (48) llamafuncpppp -> . RPAR
+
+    COMMA           shift and go to state 82
+    RPAR            shift and go to state 71
+
+    llamafuncppp                   shift and go to state 81
+    llamafuncpppp                  shift and go to state 83
+
+state 68
 
     (42) llamafunc -> ID LPAR llamafuncp .
 
@@ -1103,7 +1112,7 @@ state 67
     SEMICOLON       reduce using rule 42 (llamafunc -> ID LPAR llamafuncp .)
 
 
-state 68
+state 69
 
     (43) llamafuncp -> llamafuncpp .
 
@@ -1123,7 +1132,7 @@ state 68
     SEMICOLON       reduce using rule 43 (llamafuncp -> llamafuncpp .)
 
 
-state 69
+state 70
 
     (44) llamafuncp -> llamafuncpppp .
 
@@ -1141,13 +1150,6 @@ state 69
     AND             reduce using rule 44 (llamafuncp -> llamafuncpppp .)
     OR              reduce using rule 44 (llamafuncp -> llamafuncpppp .)
     SEMICOLON       reduce using rule 44 (llamafuncp -> llamafuncpppp .)
-
-
-state 70
-
-    (45) llamafuncpp -> tipo . ID llamafuncppp
-
-    ID              shift and go to state 81
 
 
 state 71
@@ -1173,34 +1175,34 @@ state 71
 state 72
 
     (1) programa -> VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher . maines debug salidadoc
-    (9) maines -> . mainf resetmem
-    (10) maines -> . empty
+    (6) maines -> . mainf resetmem
+    (7) maines -> . empty
     (111) mainf -> . bloque SEMICOLON
     (112) empty -> .
     (61) bloque -> . LKEY bloquep
     (62) bloque -> . LKEY bloqueppp
 
     $end            reduce using rule 112 (empty -> .)
-    LKEY            shift and go to state 86
+    LKEY            shift and go to state 88
 
-    maines                         shift and go to state 82
-    mainf                          shift and go to state 83
-    empty                          shift and go to state 84
-    bloque                         shift and go to state 85
+    maines                         shift and go to state 84
+    mainf                          shift and go to state 85
+    empty                          shift and go to state 86
+    bloque                         shift and go to state 87
 
 state 73
 
     (49) funcionf -> VOID funciontipo ID funcionid . LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp
 
-    LPAR            shift and go to state 87
+    LPAR            shift and go to state 89
 
 
 state 74
 
     (50) funcionf -> tipo ID funcionid LPAR . funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
-    (54) funcionp -> . funcionpp
-    (55) funcionp -> . empty
-    (56) funcionpp -> . tipo ID varid funcionppp
+    (53) funcionp -> . funcionpp
+    (54) funcionp -> . empty
+    (55) funcionpp -> . tipo ID varid funcionppp
     (112) empty -> .
     (20) tipo -> . INT funciontipo
     (21) tipo -> . FLOAT funciontipo
@@ -1209,10 +1211,10 @@ state 74
     INT             shift and go to state 8
     FLOAT           shift and go to state 9
 
-    tipo                           shift and go to state 88
-    funcionp                       shift and go to state 89
-    funcionpp                      shift and go to state 90
-    empty                          shift and go to state 91
+    tipo                           shift and go to state 90
+    funcionp                       shift and go to state 91
+    funcionpp                      shift and go to state 92
+    empty                          shift and go to state 93
 
 state 75
 
@@ -1232,7 +1234,7 @@ state 75
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    exp                            shift and go to state 92
+    exp                            shift and go to state 94
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
@@ -1256,7 +1258,7 @@ state 76
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    exp                            shift and go to state 93
+    exp                            shift and go to state 95
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
@@ -1279,7 +1281,7 @@ state 77
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    termino                        shift and go to state 94
+    termino                        shift and go to state 96
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
@@ -1301,7 +1303,7 @@ state 78
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    termino                        shift and go to state 95
+    termino                        shift and go to state 97
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
@@ -1326,77 +1328,113 @@ state 79
     OR              reduce using rule 36 (outfondo -> .)
     SEMICOLON       reduce using rule 36 (outfondo -> .)
 
-    outfondo                       shift and go to state 96
+    outfondo                       shift and go to state 98
 
 state 80
 
     (104) expresion -> exp cuadexpresion . expresionp
-    (106) expresionp -> . MORETHAN meteopdores expresion
-    (107) expresionp -> . LESSTHAN meteopdores expresion
-    (108) expresionp -> . EQL meteopdores expresion
-    (109) expresionp -> . NOTEQL meteopdores expresion
-    (110) expresionp -> . empty
+    (105) expresionp -> . MORETHAN meteopdores expresion
+    (106) expresionp -> . LESSTHAN meteopdores expresion
+    (107) expresionp -> . EQL meteopdores expresion
+    (108) expresionp -> . NOTEQL meteopdores expresion
+    (109) expresionp -> . empty
     (112) empty -> .
 
-    MORETHAN        shift and go to state 98
-    LESSTHAN        shift and go to state 99
-    EQL             shift and go to state 100
-    NOTEQL          shift and go to state 101
+    MORETHAN        shift and go to state 100
+    LESSTHAN        shift and go to state 101
+    EQL             shift and go to state 102
+    NOTEQL          shift and go to state 103
     RPAR            reduce using rule 112 (empty -> .)
     COMMA           reduce using rule 112 (empty -> .)
     AND             reduce using rule 112 (empty -> .)
     OR              reduce using rule 112 (empty -> .)
     SEMICOLON       reduce using rule 112 (empty -> .)
 
-    expresionp                     shift and go to state 97
-    empty                          shift and go to state 102
+    expresionp                     shift and go to state 99
+    empty                          shift and go to state 104
 
 state 81
 
-    (45) llamafuncpp -> tipo ID . llamafuncppp
-    (46) llamafuncppp -> . COMMA llamafuncpp
-    (47) llamafuncppp -> . llamafuncpppp
-    (48) llamafuncpppp -> . RPAR
+    (45) llamafuncpp -> ID llamafuncppp .
 
-    COMMA           shift and go to state 104
-    RPAR            shift and go to state 71
+    MULT            reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    SLASH           reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    PLUS            reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    MINUS           reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    RBRK            reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    MORETHAN        reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    LESSTHAN        reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    EQL             reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    NOTEQL          reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    RPAR            reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    COMMA           reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    AND             reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    OR              reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
+    SEMICOLON       reduce using rule 45 (llamafuncpp -> ID llamafuncppp .)
 
-    llamafuncppp                   shift and go to state 103
-    llamafuncpppp                  shift and go to state 105
 
 state 82
 
-    (1) programa -> VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher maines . debug salidadoc
-    (3) debug -> .
+    (46) llamafuncppp -> COMMA . llamafuncpp
+    (45) llamafuncpp -> . ID llamafuncppp
 
-    $end            reduce using rule 3 (debug -> .)
+    ID              shift and go to state 67
 
-    debug                          shift and go to state 106
+    llamafuncpp                    shift and go to state 105
 
 state 83
 
-    (9) maines -> mainf . resetmem
-    (51) resetmem -> .
+    (47) llamafuncppp -> llamafuncpppp .
 
-    $end            reduce using rule 51 (resetmem -> .)
+    MULT            reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    SLASH           reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    PLUS            reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    MINUS           reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    RBRK            reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    MORETHAN        reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    LESSTHAN        reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    EQL             reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    NOTEQL          reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    RPAR            reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    COMMA           reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    AND             reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    OR              reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    SEMICOLON       reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
 
-    resetmem                       shift and go to state 107
 
 state 84
 
-    (10) maines -> empty .
+    (1) programa -> VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher maines . debug salidadoc
+    (9) debug -> .
 
-    $end            reduce using rule 10 (maines -> empty .)
+    $end            reduce using rule 9 (debug -> .)
 
+    debug                          shift and go to state 106
 
 state 85
+
+    (6) maines -> mainf . resetmem
+    (60) resetmem -> .
+
+    $end            reduce using rule 60 (resetmem -> .)
+
+    resetmem                       shift and go to state 107
+
+state 86
+
+    (7) maines -> empty .
+
+    $end            reduce using rule 7 (maines -> empty .)
+
+
+state 87
 
     (111) mainf -> bloque . SEMICOLON
 
     SEMICOLON       shift and go to state 108
 
 
-state 86
+state 88
 
     (61) bloque -> LKEY . bloquep
     (62) bloque -> LKEY . bloqueppp
@@ -1433,12 +1471,12 @@ state 86
     escritura                      shift and go to state 117
     llamafunc                      shift and go to state 118
 
-state 87
+state 89
 
     (49) funcionf -> VOID funciontipo ID funcionid LPAR . funcionp RPAR bloque resetmem SEMICOLON funcionpppp
-    (54) funcionp -> . funcionpp
-    (55) funcionp -> . empty
-    (56) funcionpp -> . tipo ID varid funcionppp
+    (53) funcionp -> . funcionpp
+    (54) funcionp -> . empty
+    (55) funcionpp -> . tipo ID varid funcionppp
     (112) empty -> .
     (20) tipo -> . INT funciontipo
     (21) tipo -> . FLOAT funciontipo
@@ -1448,39 +1486,39 @@ state 87
     FLOAT           shift and go to state 9
 
     funcionp                       shift and go to state 124
-    funcionpp                      shift and go to state 90
-    empty                          shift and go to state 91
-    tipo                           shift and go to state 88
+    funcionpp                      shift and go to state 92
+    empty                          shift and go to state 93
+    tipo                           shift and go to state 90
 
-state 88
+state 90
 
-    (56) funcionpp -> tipo . ID varid funcionppp
+    (55) funcionpp -> tipo . ID varid funcionppp
 
     ID              shift and go to state 125
 
 
-state 89
+state 91
 
     (50) funcionf -> tipo ID funcionid LPAR funcionp . RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
 
     RPAR            shift and go to state 126
 
 
-state 90
-
-    (54) funcionp -> funcionpp .
-
-    RPAR            reduce using rule 54 (funcionp -> funcionpp .)
-
-
-state 91
-
-    (55) funcionp -> empty .
-
-    RPAR            reduce using rule 55 (funcionp -> empty .)
-
-
 state 92
+
+    (53) funcionp -> funcionpp .
+
+    RPAR            reduce using rule 53 (funcionp -> funcionpp .)
+
+
+state 93
+
+    (54) funcionp -> empty .
+
+    RPAR            reduce using rule 54 (funcionp -> empty .)
+
+
+state 94
 
     (25) auxexp -> PLUS meteopdores exp .
 
@@ -1496,7 +1534,7 @@ state 92
     SEMICOLON       reduce using rule 25 (auxexp -> PLUS meteopdores exp .)
 
 
-state 93
+state 95
 
     (26) auxexp -> MINUS meteopdores exp .
 
@@ -1512,7 +1550,7 @@ state 93
     SEMICOLON       reduce using rule 26 (auxexp -> MINUS meteopdores exp .)
 
 
-state 94
+state 96
 
     (30) auxtermino -> MULT meteopdores termino .
 
@@ -1530,7 +1568,7 @@ state 94
     SEMICOLON       reduce using rule 30 (auxtermino -> MULT meteopdores termino .)
 
 
-state 95
+state 97
 
     (31) auxtermino -> SLASH meteopdores termino .
 
@@ -1548,7 +1586,7 @@ state 95
     SEMICOLON       reduce using rule 31 (auxtermino -> SLASH meteopdores termino .)
 
 
-state 96
+state 98
 
     (33) factor -> LPAR infondo expresion RPAR outfondo .
 
@@ -1568,7 +1606,7 @@ state 96
     SEMICOLON       reduce using rule 33 (factor -> LPAR infondo expresion RPAR outfondo .)
 
 
-state 97
+state 99
 
     (104) expresion -> exp cuadexpresion expresionp .
 
@@ -1579,9 +1617,9 @@ state 97
     SEMICOLON       reduce using rule 104 (expresion -> exp cuadexpresion expresionp .)
 
 
-state 98
+state 100
 
-    (106) expresionp -> MORETHAN . meteopdores expresion
+    (105) expresionp -> MORETHAN . meteopdores expresion
     (82) meteopdores -> .
 
     LPAR            reduce using rule 82 (meteopdores -> .)
@@ -1591,9 +1629,9 @@ state 98
 
     meteopdores                    shift and go to state 127
 
-state 99
+state 101
 
-    (107) expresionp -> LESSTHAN . meteopdores expresion
+    (106) expresionp -> LESSTHAN . meteopdores expresion
     (82) meteopdores -> .
 
     LPAR            reduce using rule 82 (meteopdores -> .)
@@ -1603,9 +1641,9 @@ state 99
 
     meteopdores                    shift and go to state 128
 
-state 100
+state 102
 
-    (108) expresionp -> EQL . meteopdores expresion
+    (107) expresionp -> EQL . meteopdores expresion
     (82) meteopdores -> .
 
     LPAR            reduce using rule 82 (meteopdores -> .)
@@ -1615,9 +1653,9 @@ state 100
 
     meteopdores                    shift and go to state 129
 
-state 101
+state 103
 
-    (109) expresionp -> NOTEQL . meteopdores expresion
+    (108) expresionp -> NOTEQL . meteopdores expresion
     (82) meteopdores -> .
 
     LPAR            reduce using rule 82 (meteopdores -> .)
@@ -1627,84 +1665,51 @@ state 101
 
     meteopdores                    shift and go to state 130
 
-state 102
-
-    (110) expresionp -> empty .
-
-    RPAR            reduce using rule 110 (expresionp -> empty .)
-    COMMA           reduce using rule 110 (expresionp -> empty .)
-    AND             reduce using rule 110 (expresionp -> empty .)
-    OR              reduce using rule 110 (expresionp -> empty .)
-    SEMICOLON       reduce using rule 110 (expresionp -> empty .)
-
-
-state 103
-
-    (45) llamafuncpp -> tipo ID llamafuncppp .
-
-    MULT            reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    SLASH           reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    PLUS            reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    MINUS           reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    RBRK            reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    MORETHAN        reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    LESSTHAN        reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    EQL             reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    NOTEQL          reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    RPAR            reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    COMMA           reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    AND             reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    OR              reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-    SEMICOLON       reduce using rule 45 (llamafuncpp -> tipo ID llamafuncppp .)
-
-
 state 104
 
-    (46) llamafuncppp -> COMMA . llamafuncpp
-    (45) llamafuncpp -> . tipo ID llamafuncppp
-    (20) tipo -> . INT funciontipo
-    (21) tipo -> . FLOAT funciontipo
+    (109) expresionp -> empty .
 
-    INT             shift and go to state 8
-    FLOAT           shift and go to state 9
+    RPAR            reduce using rule 109 (expresionp -> empty .)
+    COMMA           reduce using rule 109 (expresionp -> empty .)
+    AND             reduce using rule 109 (expresionp -> empty .)
+    OR              reduce using rule 109 (expresionp -> empty .)
+    SEMICOLON       reduce using rule 109 (expresionp -> empty .)
 
-    llamafuncpp                    shift and go to state 131
-    tipo                           shift and go to state 70
 
 state 105
 
-    (47) llamafuncppp -> llamafuncpppp .
+    (46) llamafuncppp -> COMMA llamafuncpp .
 
-    MULT            reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    SLASH           reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    PLUS            reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    MINUS           reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    RBRK            reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    MORETHAN        reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    LESSTHAN        reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    EQL             reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    NOTEQL          reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    RPAR            reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    COMMA           reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    AND             reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    OR              reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
-    SEMICOLON       reduce using rule 47 (llamafuncppp -> llamafuncpppp .)
+    MULT            reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    SLASH           reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    PLUS            reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    MINUS           reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    RBRK            reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    MORETHAN        reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    LESSTHAN        reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    EQL             reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    NOTEQL          reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    RPAR            reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    COMMA           reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    AND             reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    OR              reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
+    SEMICOLON       reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
 
 
 state 106
 
     (1) programa -> VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher maines debug . salidadoc
-    (2) salidadoc -> .
+    (8) salidadoc -> .
 
-    $end            reduce using rule 2 (salidadoc -> .)
+    $end            reduce using rule 8 (salidadoc -> .)
 
-    salidadoc                      shift and go to state 132
+    salidadoc                      shift and go to state 131
 
 state 107
 
-    (9) maines -> mainf resetmem .
+    (6) maines -> mainf resetmem .
 
-    $end            reduce using rule 9 (maines -> mainf resetmem .)
+    $end            reduce using rule 6 (maines -> mainf resetmem .)
 
 
 state 108
@@ -1763,9 +1768,9 @@ state 111
     PRINT           shift and go to state 123
 
     estatuto                       shift and go to state 111
-    bloquepp                       shift and go to state 133
-    bloquep                        shift and go to state 134
-    bloqueppp                      shift and go to state 135
+    bloquepp                       shift and go to state 132
+    bloquep                        shift and go to state 133
+    bloqueppp                      shift and go to state 134
     asignacion                     shift and go to state 113
     condif                         shift and go to state 114
     condwhile                      shift and go to state 115
@@ -1847,7 +1852,7 @@ state 118
 
     (72) estatuto -> llamafunc . SEMICOLON
 
-    SEMICOLON       shift and go to state 136
+    SEMICOLON       shift and go to state 135
 
 
 state 119
@@ -1862,21 +1867,21 @@ state 119
     LBRK            shift and go to state 18
     AEQL            reduce using rule 83 (meteopandos -> .)
 
-    array                          shift and go to state 137
-    meteopandos                    shift and go to state 138
+    array                          shift and go to state 136
+    meteopandos                    shift and go to state 137
 
 state 120
 
     (91) condif -> IF . LPAR expresion cuadcondif RPAR bloque condifp cuadrellenoif
 
-    LPAR            shift and go to state 139
+    LPAR            shift and go to state 138
 
 
 state 121
 
     (97) condwhile -> WHILE . LPAR guardarsal expresion quadcondwhile RPAR bloque rellenocondwhile SEMICOLON
 
-    LPAR            shift and go to state 140
+    LPAR            shift and go to state 139
 
 
 state 122
@@ -1886,7 +1891,7 @@ state 122
 
     LKEY            reduce using rule 102 (guardardowhile -> .)
 
-    guardardowhile                 shift and go to state 141
+    guardardowhile                 shift and go to state 140
 
 state 123
 
@@ -1895,24 +1900,24 @@ state 123
 
     LPAR            reduce using rule 82 (meteopdores -> .)
 
-    meteopdores                    shift and go to state 142
+    meteopdores                    shift and go to state 141
 
 state 124
 
     (49) funcionf -> VOID funciontipo ID funcionid LPAR funcionp . RPAR bloque resetmem SEMICOLON funcionpppp
 
-    RPAR            shift and go to state 143
+    RPAR            shift and go to state 142
 
 
 state 125
 
-    (56) funcionpp -> tipo ID . varid funcionppp
-    (14) varid -> .
+    (55) funcionpp -> tipo ID . varid funcionppp
+    (19) varid -> .
 
-    COMMA           reduce using rule 14 (varid -> .)
-    RPAR            reduce using rule 14 (varid -> .)
+    COMMA           reduce using rule 19 (varid -> .)
+    RPAR            reduce using rule 19 (varid -> .)
 
-    varid                          shift and go to state 144
+    varid                          shift and go to state 143
 
 state 126
 
@@ -1920,13 +1925,39 @@ state 126
     (61) bloque -> . LKEY bloquep
     (62) bloque -> . LKEY bloqueppp
 
-    LKEY            shift and go to state 86
+    LKEY            shift and go to state 88
 
-    bloque                         shift and go to state 145
+    bloque                         shift and go to state 144
 
 state 127
 
-    (106) expresionp -> MORETHAN meteopdores . expresion
+    (105) expresionp -> MORETHAN meteopdores . expresion
+    (104) expresion -> . exp cuadexpresion expresionp
+    (23) exp -> . termino cuadexp auxexp
+    (28) termino -> . factor cuadtermino auxtermino
+    (33) factor -> . LPAR infondo expresion RPAR outfondo
+    (34) factor -> . varcte
+    (37) varcte -> . ID meteopandos
+    (38) varcte -> . NUMFLOAT meteconst
+    (39) varcte -> . NUMINT meteconst
+    (40) varcte -> . llamafunc
+    (42) llamafunc -> . ID LPAR llamafuncp
+
+    LPAR            shift and go to state 32
+    ID              shift and go to state 34
+    NUMFLOAT        shift and go to state 35
+    NUMINT          shift and go to state 36
+
+    expresion                      shift and go to state 145
+    exp                            shift and go to state 66
+    termino                        shift and go to state 30
+    factor                         shift and go to state 31
+    varcte                         shift and go to state 33
+    llamafunc                      shift and go to state 37
+
+state 128
+
+    (106) expresionp -> LESSTHAN meteopdores . expresion
     (104) expresion -> . exp cuadexpresion expresionp
     (23) exp -> . termino cuadexp auxexp
     (28) termino -> . factor cuadtermino auxtermino
@@ -1950,9 +1981,9 @@ state 127
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 128
+state 129
 
-    (107) expresionp -> LESSTHAN meteopdores . expresion
+    (107) expresionp -> EQL meteopdores . expresion
     (104) expresion -> . exp cuadexpresion expresionp
     (23) exp -> . termino cuadexp auxexp
     (28) termino -> . factor cuadtermino auxtermino
@@ -1976,9 +2007,9 @@ state 128
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 129
+state 130
 
-    (108) expresionp -> EQL meteopdores . expresion
+    (108) expresionp -> NOTEQL meteopdores . expresion
     (104) expresion -> . exp cuadexpresion expresionp
     (23) exp -> . termino cuadexp auxexp
     (28) termino -> . factor cuadtermino auxtermino
@@ -2002,60 +2033,14 @@ state 129
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 130
-
-    (109) expresionp -> NOTEQL meteopdores . expresion
-    (104) expresion -> . exp cuadexpresion expresionp
-    (23) exp -> . termino cuadexp auxexp
-    (28) termino -> . factor cuadtermino auxtermino
-    (33) factor -> . LPAR infondo expresion RPAR outfondo
-    (34) factor -> . varcte
-    (37) varcte -> . ID meteopandos
-    (38) varcte -> . NUMFLOAT meteconst
-    (39) varcte -> . NUMINT meteconst
-    (40) varcte -> . llamafunc
-    (42) llamafunc -> . ID LPAR llamafuncp
-
-    LPAR            shift and go to state 32
-    ID              shift and go to state 34
-    NUMFLOAT        shift and go to state 35
-    NUMINT          shift and go to state 36
-
-    expresion                      shift and go to state 149
-    exp                            shift and go to state 66
-    termino                        shift and go to state 30
-    factor                         shift and go to state 31
-    varcte                         shift and go to state 33
-    llamafunc                      shift and go to state 37
-
 state 131
-
-    (46) llamafuncppp -> COMMA llamafuncpp .
-
-    MULT            reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    SLASH           reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    PLUS            reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    MINUS           reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    RBRK            reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    MORETHAN        reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    LESSTHAN        reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    EQL             reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    NOTEQL          reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    RPAR            reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    COMMA           reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    AND             reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    OR              reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-    SEMICOLON       reduce using rule 46 (llamafuncppp -> COMMA llamafuncpp .)
-
-
-state 132
 
     (1) programa -> VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher maines debug salidadoc .
 
     $end            reduce using rule 1 (programa -> VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher maines debug salidadoc .)
 
 
-state 133
+state 132
 
     (63) bloquep -> estatuto bloquepp .
 
@@ -2065,7 +2050,7 @@ state 133
     ELSE            reduce using rule 63 (bloquep -> estatuto bloquepp .)
 
 
-state 134
+state 133
 
     (64) bloquepp -> bloquep .
 
@@ -2075,7 +2060,7 @@ state 134
     ELSE            reduce using rule 64 (bloquepp -> bloquep .)
 
 
-state 135
+state 134
 
     (65) bloquepp -> bloqueppp .
 
@@ -2085,7 +2070,7 @@ state 135
     ELSE            reduce using rule 65 (bloquepp -> bloqueppp .)
 
 
-state 136
+state 135
 
     (72) estatuto -> llamafunc SEMICOLON .
 
@@ -2097,25 +2082,25 @@ state 136
     PRINT           reduce using rule 72 (estatuto -> llamafunc SEMICOLON .)
 
 
-state 137
+state 136
 
     (73) asignacion -> ID array . asignacionp
     (75) asignacionp -> . AEQL meteopdores expresionandor cuadass SEMICOLON
 
-    AEQL            shift and go to state 151
+    AEQL            shift and go to state 150
 
-    asignacionp                    shift and go to state 150
+    asignacionp                    shift and go to state 149
 
-state 138
+state 137
 
     (74) asignacion -> ID meteopandos . asignacionp
     (75) asignacionp -> . AEQL meteopdores expresionandor cuadass SEMICOLON
 
-    AEQL            shift and go to state 151
+    AEQL            shift and go to state 150
 
-    asignacionp                    shift and go to state 152
+    asignacionp                    shift and go to state 151
 
-state 139
+state 138
 
     (91) condif -> IF LPAR . expresion cuadcondif RPAR bloque condifp cuadrellenoif
     (104) expresion -> . exp cuadexpresion expresionp
@@ -2134,14 +2119,14 @@ state 139
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    expresion                      shift and go to state 153
+    expresion                      shift and go to state 152
     exp                            shift and go to state 66
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 140
+state 139
 
     (97) condwhile -> WHILE LPAR . guardarsal expresion quadcondwhile RPAR bloque rellenocondwhile SEMICOLON
     (98) guardarsal -> .
@@ -2151,100 +2136,100 @@ state 140
     NUMFLOAT        reduce using rule 98 (guardarsal -> .)
     NUMINT          reduce using rule 98 (guardarsal -> .)
 
-    guardarsal                     shift and go to state 154
+    guardarsal                     shift and go to state 153
 
-state 141
+state 140
 
     (101) conddowhile -> DO guardardowhile . bloque WHILE LPAR expresion quadconddowhile RPAR SEMICOLON
     (61) bloque -> . LKEY bloquep
     (62) bloque -> . LKEY bloqueppp
 
-    LKEY            shift and go to state 86
+    LKEY            shift and go to state 88
 
-    bloque                         shift and go to state 155
+    bloque                         shift and go to state 154
 
-state 142
+state 141
 
     (84) escritura -> PRINT meteopdores . LPAR escriturap
 
-    LPAR            shift and go to state 156
+    LPAR            shift and go to state 155
 
 
-state 143
+state 142
 
     (49) funcionf -> VOID funciontipo ID funcionid LPAR funcionp RPAR . bloque resetmem SEMICOLON funcionpppp
     (61) bloque -> . LKEY bloquep
     (62) bloque -> . LKEY bloqueppp
 
-    LKEY            shift and go to state 86
+    LKEY            shift and go to state 88
 
-    bloque                         shift and go to state 157
+    bloque                         shift and go to state 156
+
+state 143
+
+    (55) funcionpp -> tipo ID varid . funcionppp
+    (56) funcionppp -> . COMMA funcionpp
+    (57) funcionppp -> . empty
+    (112) empty -> .
+
+    COMMA           shift and go to state 158
+    RPAR            reduce using rule 112 (empty -> .)
+
+    funcionppp                     shift and go to state 157
+    empty                          shift and go to state 159
 
 state 144
 
-    (56) funcionpp -> tipo ID varid . funcionppp
-    (57) funcionppp -> . COMMA funcionpp
-    (58) funcionppp -> . empty
-    (112) empty -> .
+    (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque . RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
 
-    COMMA           shift and go to state 159
-    RPAR            reduce using rule 112 (empty -> .)
+    RETURN          shift and go to state 160
 
-    funcionppp                     shift and go to state 158
-    empty                          shift and go to state 160
 
 state 145
 
-    (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque . RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
+    (105) expresionp -> MORETHAN meteopdores expresion .
 
-    RETURN          shift and go to state 161
+    RPAR            reduce using rule 105 (expresionp -> MORETHAN meteopdores expresion .)
+    COMMA           reduce using rule 105 (expresionp -> MORETHAN meteopdores expresion .)
+    AND             reduce using rule 105 (expresionp -> MORETHAN meteopdores expresion .)
+    OR              reduce using rule 105 (expresionp -> MORETHAN meteopdores expresion .)
+    SEMICOLON       reduce using rule 105 (expresionp -> MORETHAN meteopdores expresion .)
 
 
 state 146
 
-    (106) expresionp -> MORETHAN meteopdores expresion .
+    (106) expresionp -> LESSTHAN meteopdores expresion .
 
-    RPAR            reduce using rule 106 (expresionp -> MORETHAN meteopdores expresion .)
-    COMMA           reduce using rule 106 (expresionp -> MORETHAN meteopdores expresion .)
-    AND             reduce using rule 106 (expresionp -> MORETHAN meteopdores expresion .)
-    OR              reduce using rule 106 (expresionp -> MORETHAN meteopdores expresion .)
-    SEMICOLON       reduce using rule 106 (expresionp -> MORETHAN meteopdores expresion .)
+    RPAR            reduce using rule 106 (expresionp -> LESSTHAN meteopdores expresion .)
+    COMMA           reduce using rule 106 (expresionp -> LESSTHAN meteopdores expresion .)
+    AND             reduce using rule 106 (expresionp -> LESSTHAN meteopdores expresion .)
+    OR              reduce using rule 106 (expresionp -> LESSTHAN meteopdores expresion .)
+    SEMICOLON       reduce using rule 106 (expresionp -> LESSTHAN meteopdores expresion .)
 
 
 state 147
 
-    (107) expresionp -> LESSTHAN meteopdores expresion .
+    (107) expresionp -> EQL meteopdores expresion .
 
-    RPAR            reduce using rule 107 (expresionp -> LESSTHAN meteopdores expresion .)
-    COMMA           reduce using rule 107 (expresionp -> LESSTHAN meteopdores expresion .)
-    AND             reduce using rule 107 (expresionp -> LESSTHAN meteopdores expresion .)
-    OR              reduce using rule 107 (expresionp -> LESSTHAN meteopdores expresion .)
-    SEMICOLON       reduce using rule 107 (expresionp -> LESSTHAN meteopdores expresion .)
+    RPAR            reduce using rule 107 (expresionp -> EQL meteopdores expresion .)
+    COMMA           reduce using rule 107 (expresionp -> EQL meteopdores expresion .)
+    AND             reduce using rule 107 (expresionp -> EQL meteopdores expresion .)
+    OR              reduce using rule 107 (expresionp -> EQL meteopdores expresion .)
+    SEMICOLON       reduce using rule 107 (expresionp -> EQL meteopdores expresion .)
 
 
 state 148
 
-    (108) expresionp -> EQL meteopdores expresion .
+    (108) expresionp -> NOTEQL meteopdores expresion .
 
-    RPAR            reduce using rule 108 (expresionp -> EQL meteopdores expresion .)
-    COMMA           reduce using rule 108 (expresionp -> EQL meteopdores expresion .)
-    AND             reduce using rule 108 (expresionp -> EQL meteopdores expresion .)
-    OR              reduce using rule 108 (expresionp -> EQL meteopdores expresion .)
-    SEMICOLON       reduce using rule 108 (expresionp -> EQL meteopdores expresion .)
+    RPAR            reduce using rule 108 (expresionp -> NOTEQL meteopdores expresion .)
+    COMMA           reduce using rule 108 (expresionp -> NOTEQL meteopdores expresion .)
+    AND             reduce using rule 108 (expresionp -> NOTEQL meteopdores expresion .)
+    OR              reduce using rule 108 (expresionp -> NOTEQL meteopdores expresion .)
+    SEMICOLON       reduce using rule 108 (expresionp -> NOTEQL meteopdores expresion .)
 
 
 state 149
-
-    (109) expresionp -> NOTEQL meteopdores expresion .
-
-    RPAR            reduce using rule 109 (expresionp -> NOTEQL meteopdores expresion .)
-    COMMA           reduce using rule 109 (expresionp -> NOTEQL meteopdores expresion .)
-    AND             reduce using rule 109 (expresionp -> NOTEQL meteopdores expresion .)
-    OR              reduce using rule 109 (expresionp -> NOTEQL meteopdores expresion .)
-    SEMICOLON       reduce using rule 109 (expresionp -> NOTEQL meteopdores expresion .)
-
-
-state 150
 
     (73) asignacion -> ID array asignacionp .
 
@@ -2256,7 +2241,7 @@ state 150
     PRINT           reduce using rule 73 (asignacion -> ID array asignacionp .)
 
 
-state 151
+state 150
 
     (75) asignacionp -> AEQL . meteopdores expresionandor cuadass SEMICOLON
     (82) meteopdores -> .
@@ -2266,9 +2251,9 @@ state 151
     NUMFLOAT        reduce using rule 82 (meteopdores -> .)
     NUMINT          reduce using rule 82 (meteopdores -> .)
 
-    meteopdores                    shift and go to state 162
+    meteopdores                    shift and go to state 161
 
-state 152
+state 151
 
     (74) asignacion -> ID meteopandos asignacionp .
 
@@ -2280,16 +2265,16 @@ state 152
     PRINT           reduce using rule 74 (asignacion -> ID meteopandos asignacionp .)
 
 
-state 153
+state 152
 
     (91) condif -> IF LPAR expresion . cuadcondif RPAR bloque condifp cuadrellenoif
-    (92) cuadcondif -> .
+    (94) cuadcondif -> .
 
-    RPAR            reduce using rule 92 (cuadcondif -> .)
+    RPAR            reduce using rule 94 (cuadcondif -> .)
 
-    cuadcondif                     shift and go to state 163
+    cuadcondif                     shift and go to state 162
 
-state 154
+state 153
 
     (97) condwhile -> WHILE LPAR guardarsal . expresion quadcondwhile RPAR bloque rellenocondwhile SEMICOLON
     (104) expresion -> . exp cuadexpresion expresionp
@@ -2308,21 +2293,21 @@ state 154
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    expresion                      shift and go to state 164
+    expresion                      shift and go to state 163
     exp                            shift and go to state 66
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 155
+state 154
 
     (101) conddowhile -> DO guardardowhile bloque . WHILE LPAR expresion quadconddowhile RPAR SEMICOLON
 
-    WHILE           shift and go to state 165
+    WHILE           shift and go to state 164
 
 
-state 156
+state 155
 
     (84) escritura -> PRINT meteopdores LPAR . escriturap
     (85) escriturap -> . expresion cuadescritura escriturapp
@@ -2338,64 +2323,64 @@ state 156
     (40) varcte -> . llamafunc
     (42) llamafunc -> . ID LPAR llamafuncp
 
-    STRING          shift and go to state 168
+    STRING          shift and go to state 167
     LPAR            shift and go to state 32
     ID              shift and go to state 34
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    escriturap                     shift and go to state 166
-    expresion                      shift and go to state 167
+    escriturap                     shift and go to state 165
+    expresion                      shift and go to state 166
     exp                            shift and go to state 66
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 157
+state 156
 
     (49) funcionf -> VOID funciontipo ID funcionid LPAR funcionp RPAR bloque . resetmem SEMICOLON funcionpppp
-    (51) resetmem -> .
+    (60) resetmem -> .
 
-    SEMICOLON       reduce using rule 51 (resetmem -> .)
+    SEMICOLON       reduce using rule 60 (resetmem -> .)
 
-    resetmem                       shift and go to state 169
+    resetmem                       shift and go to state 168
+
+state 157
+
+    (55) funcionpp -> tipo ID varid funcionppp .
+
+    RPAR            reduce using rule 55 (funcionpp -> tipo ID varid funcionppp .)
+
 
 state 158
 
-    (56) funcionpp -> tipo ID varid funcionppp .
-
-    RPAR            reduce using rule 56 (funcionpp -> tipo ID varid funcionppp .)
-
-
-state 159
-
-    (57) funcionppp -> COMMA . funcionpp
-    (56) funcionpp -> . tipo ID varid funcionppp
+    (56) funcionppp -> COMMA . funcionpp
+    (55) funcionpp -> . tipo ID varid funcionppp
     (20) tipo -> . INT funciontipo
     (21) tipo -> . FLOAT funciontipo
 
     INT             shift and go to state 8
     FLOAT           shift and go to state 9
 
-    funcionpp                      shift and go to state 170
-    tipo                           shift and go to state 88
+    funcionpp                      shift and go to state 169
+    tipo                           shift and go to state 90
+
+state 159
+
+    (57) funcionppp -> empty .
+
+    RPAR            reduce using rule 57 (funcionppp -> empty .)
+
 
 state 160
 
-    (58) funcionppp -> empty .
+    (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN . LPAR exp RPAR resetmem SEMICOLON funcionpppp
 
-    RPAR            reduce using rule 58 (funcionppp -> empty .)
+    LPAR            shift and go to state 170
 
 
 state 161
-
-    (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN . LPAR exp RPAR resetmem SEMICOLON funcionpppp
-
-    LPAR            shift and go to state 171
-
-
-state 162
 
     (75) asignacionp -> AEQL meteopdores . expresionandor cuadass SEMICOLON
     (76) expresionandor -> . expresion cuadexpresionandor auxandor
@@ -2415,38 +2400,38 @@ state 162
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    expresionandor                 shift and go to state 172
-    expresion                      shift and go to state 173
+    expresionandor                 shift and go to state 171
+    expresion                      shift and go to state 172
     exp                            shift and go to state 66
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 163
+state 162
 
     (91) condif -> IF LPAR expresion cuadcondif . RPAR bloque condifp cuadrellenoif
 
-    RPAR            shift and go to state 174
+    RPAR            shift and go to state 173
 
 
-state 164
+state 163
 
     (97) condwhile -> WHILE LPAR guardarsal expresion . quadcondwhile RPAR bloque rellenocondwhile SEMICOLON
     (99) quadcondwhile -> .
 
     RPAR            reduce using rule 99 (quadcondwhile -> .)
 
-    quadcondwhile                  shift and go to state 175
+    quadcondwhile                  shift and go to state 174
 
-state 165
+state 164
 
     (101) conddowhile -> DO guardardowhile bloque WHILE . LPAR expresion quadconddowhile RPAR SEMICOLON
 
-    LPAR            shift and go to state 176
+    LPAR            shift and go to state 175
 
 
-state 166
+state 165
 
     (84) escritura -> PRINT meteopdores LPAR escriturap .
 
@@ -2458,17 +2443,17 @@ state 166
     PRINT           reduce using rule 84 (escritura -> PRINT meteopdores LPAR escriturap .)
 
 
-state 167
+state 166
 
     (85) escriturap -> expresion . cuadescritura escriturapp
-    (87) cuadescritura -> .
+    (89) cuadescritura -> .
 
-    COMMA           reduce using rule 87 (cuadescritura -> .)
-    RPAR            reduce using rule 87 (cuadescritura -> .)
+    COMMA           reduce using rule 89 (cuadescritura -> .)
+    RPAR            reduce using rule 89 (cuadescritura -> .)
 
-    cuadescritura                  shift and go to state 177
+    cuadescritura                  shift and go to state 176
 
-state 168
+state 167
 
     (86) escriturap -> STRING . meteconst cuadescriturastring escriturapp
     (41) meteconst -> .
@@ -2476,23 +2461,23 @@ state 168
     COMMA           reduce using rule 41 (meteconst -> .)
     RPAR            reduce using rule 41 (meteconst -> .)
 
-    meteconst                      shift and go to state 178
+    meteconst                      shift and go to state 177
 
-state 169
+state 168
 
     (49) funcionf -> VOID funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem . SEMICOLON funcionpppp
 
-    SEMICOLON       shift and go to state 179
+    SEMICOLON       shift and go to state 178
+
+
+state 169
+
+    (56) funcionppp -> COMMA funcionpp .
+
+    RPAR            reduce using rule 56 (funcionppp -> COMMA funcionpp .)
 
 
 state 170
-
-    (57) funcionppp -> COMMA funcionpp .
-
-    RPAR            reduce using rule 57 (funcionppp -> COMMA funcionpp .)
-
-
-state 171
 
     (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR . exp RPAR resetmem SEMICOLON funcionpppp
     (23) exp -> . termino cuadexp auxexp
@@ -2510,22 +2495,22 @@ state 171
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    exp                            shift and go to state 180
+    exp                            shift and go to state 179
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 172
+state 171
 
     (75) asignacionp -> AEQL meteopdores expresionandor . cuadass SEMICOLON
     (81) cuadass -> .
 
     SEMICOLON       reduce using rule 81 (cuadass -> .)
 
-    cuadass                        shift and go to state 181
+    cuadass                        shift and go to state 180
 
-state 173
+state 172
 
     (76) expresionandor -> expresion . cuadexpresionandor auxandor
     (77) cuadexpresionandor -> .
@@ -2534,26 +2519,26 @@ state 173
     OR              reduce using rule 77 (cuadexpresionandor -> .)
     SEMICOLON       reduce using rule 77 (cuadexpresionandor -> .)
 
-    cuadexpresionandor             shift and go to state 182
+    cuadexpresionandor             shift and go to state 181
 
-state 174
+state 173
 
     (91) condif -> IF LPAR expresion cuadcondif RPAR . bloque condifp cuadrellenoif
     (61) bloque -> . LKEY bloquep
     (62) bloque -> . LKEY bloqueppp
 
-    LKEY            shift and go to state 86
+    LKEY            shift and go to state 88
 
-    bloque                         shift and go to state 183
+    bloque                         shift and go to state 182
 
-state 175
+state 174
 
     (97) condwhile -> WHILE LPAR guardarsal expresion quadcondwhile . RPAR bloque rellenocondwhile SEMICOLON
 
-    RPAR            shift and go to state 184
+    RPAR            shift and go to state 183
 
 
-state 176
+state 175
 
     (101) conddowhile -> DO guardardowhile bloque WHILE LPAR . expresion quadconddowhile RPAR SEMICOLON
     (104) expresion -> . exp cuadexpresion expresionp
@@ -2572,39 +2557,39 @@ state 176
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    expresion                      shift and go to state 185
+    expresion                      shift and go to state 184
     exp                            shift and go to state 66
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 177
+state 176
 
     (85) escriturap -> expresion cuadescritura . escriturapp
-    (89) escriturapp -> . COMMA escriturap
-    (90) escriturapp -> . RPAR SEMICOLON
+    (87) escriturapp -> . COMMA escriturap
+    (88) escriturapp -> . RPAR SEMICOLON
 
-    COMMA           shift and go to state 187
-    RPAR            shift and go to state 188
+    COMMA           shift and go to state 186
+    RPAR            shift and go to state 187
 
-    escriturapp                    shift and go to state 186
+    escriturapp                    shift and go to state 185
+
+state 177
+
+    (86) escriturap -> STRING meteconst . cuadescriturastring escriturapp
+    (90) cuadescriturastring -> .
+
+    COMMA           reduce using rule 90 (cuadescriturastring -> .)
+    RPAR            reduce using rule 90 (cuadescriturastring -> .)
+
+    cuadescriturastring            shift and go to state 188
 
 state 178
 
-    (86) escriturap -> STRING meteconst . cuadescriturastring escriturapp
-    (88) cuadescriturastring -> .
-
-    COMMA           reduce using rule 88 (cuadescriturastring -> .)
-    RPAR            reduce using rule 88 (cuadescriturastring -> .)
-
-    cuadescriturastring            shift and go to state 189
-
-state 179
-
     (49) funcionf -> VOID funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON . funcionpppp
-    (59) funcionpppp -> . funcionf
-    (60) funcionpppp -> . empty
+    (58) funcionpppp -> . funcionf
+    (59) funcionpppp -> . empty
     (49) funcionf -> . VOID funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp
     (50) funcionf -> . tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
     (112) empty -> .
@@ -2616,26 +2601,26 @@ state 179
     INT             shift and go to state 8
     FLOAT           shift and go to state 9
 
-    funcionpppp                    shift and go to state 190
-    funcionf                       shift and go to state 191
-    empty                          shift and go to state 192
+    funcionpppp                    shift and go to state 189
+    funcionf                       shift and go to state 190
+    empty                          shift and go to state 191
     tipo                           shift and go to state 23
 
-state 180
+state 179
 
     (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp . RPAR resetmem SEMICOLON funcionpppp
 
-    RPAR            shift and go to state 193
+    RPAR            shift and go to state 192
 
 
-state 181
+state 180
 
     (75) asignacionp -> AEQL meteopdores expresionandor cuadass . SEMICOLON
 
-    SEMICOLON       shift and go to state 194
+    SEMICOLON       shift and go to state 193
 
 
-state 182
+state 181
 
     (76) expresionandor -> expresion cuadexpresionandor . auxandor
     (78) auxandor -> . AND meteopdores expresionandor
@@ -2643,44 +2628,44 @@ state 182
     (80) auxandor -> . empty
     (112) empty -> .
 
-    AND             shift and go to state 196
-    OR              shift and go to state 197
+    AND             shift and go to state 195
+    OR              shift and go to state 196
     SEMICOLON       reduce using rule 112 (empty -> .)
 
-    auxandor                       shift and go to state 195
-    empty                          shift and go to state 198
+    auxandor                       shift and go to state 194
+    empty                          shift and go to state 197
 
-state 183
+state 182
 
     (91) condif -> IF LPAR expresion cuadcondif RPAR bloque . condifp cuadrellenoif
-    (94) condifp -> . ELSE cuadconifelse bloque SEMICOLON
-    (95) condifp -> . SEMICOLON
+    (92) condifp -> . ELSE cuadconifelse bloque SEMICOLON
+    (93) condifp -> . SEMICOLON
 
-    ELSE            shift and go to state 200
-    SEMICOLON       shift and go to state 201
+    ELSE            shift and go to state 199
+    SEMICOLON       shift and go to state 200
 
-    condifp                        shift and go to state 199
+    condifp                        shift and go to state 198
 
-state 184
+state 183
 
     (97) condwhile -> WHILE LPAR guardarsal expresion quadcondwhile RPAR . bloque rellenocondwhile SEMICOLON
     (61) bloque -> . LKEY bloquep
     (62) bloque -> . LKEY bloqueppp
 
-    LKEY            shift and go to state 86
+    LKEY            shift and go to state 88
 
-    bloque                         shift and go to state 202
+    bloque                         shift and go to state 201
 
-state 185
+state 184
 
     (101) conddowhile -> DO guardardowhile bloque WHILE LPAR expresion . quadconddowhile RPAR SEMICOLON
     (103) quadconddowhile -> .
 
     RPAR            reduce using rule 103 (quadconddowhile -> .)
 
-    quadconddowhile                shift and go to state 203
+    quadconddowhile                shift and go to state 202
 
-state 186
+state 185
 
     (85) escriturap -> expresion cuadescritura escriturapp .
 
@@ -2692,9 +2677,9 @@ state 186
     PRINT           reduce using rule 85 (escriturap -> expresion cuadescritura escriturapp .)
 
 
-state 187
+state 186
 
-    (89) escriturapp -> COMMA . escriturap
+    (87) escriturapp -> COMMA . escriturap
     (85) escriturap -> . expresion cuadescritura escriturapp
     (86) escriturap -> . STRING meteconst cuadescriturastring escriturapp
     (104) expresion -> . exp cuadexpresion expresionp
@@ -2708,69 +2693,69 @@ state 187
     (40) varcte -> . llamafunc
     (42) llamafunc -> . ID LPAR llamafuncp
 
-    STRING          shift and go to state 168
+    STRING          shift and go to state 167
     LPAR            shift and go to state 32
     ID              shift and go to state 34
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    escriturap                     shift and go to state 204
-    expresion                      shift and go to state 167
+    escriturap                     shift and go to state 203
+    expresion                      shift and go to state 166
     exp                            shift and go to state 66
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
+state 187
+
+    (88) escriturapp -> RPAR . SEMICOLON
+
+    SEMICOLON       shift and go to state 204
+
+
 state 188
 
-    (90) escriturapp -> RPAR . SEMICOLON
+    (86) escriturap -> STRING meteconst cuadescriturastring . escriturapp
+    (87) escriturapp -> . COMMA escriturap
+    (88) escriturapp -> . RPAR SEMICOLON
 
-    SEMICOLON       shift and go to state 205
+    COMMA           shift and go to state 186
+    RPAR            shift and go to state 187
 
+    escriturapp                    shift and go to state 205
 
 state 189
-
-    (86) escriturap -> STRING meteconst cuadescriturastring . escriturapp
-    (89) escriturapp -> . COMMA escriturap
-    (90) escriturapp -> . RPAR SEMICOLON
-
-    COMMA           shift and go to state 187
-    RPAR            shift and go to state 188
-
-    escriturapp                    shift and go to state 206
-
-state 190
 
     (49) funcionf -> VOID funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp .
 
     MAIN            reduce using rule 49 (funcionf -> VOID funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp .)
 
 
+state 190
+
+    (58) funcionpppp -> funcionf .
+
+    MAIN            reduce using rule 58 (funcionpppp -> funcionf .)
+
+
 state 191
 
-    (59) funcionpppp -> funcionf .
+    (59) funcionpppp -> empty .
 
-    MAIN            reduce using rule 59 (funcionpppp -> funcionf .)
+    MAIN            reduce using rule 59 (funcionpppp -> empty .)
 
 
 state 192
 
-    (60) funcionpppp -> empty .
+    (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR . resetmem SEMICOLON funcionpppp
+    (60) resetmem -> .
 
-    MAIN            reduce using rule 60 (funcionpppp -> empty .)
+    SEMICOLON       reduce using rule 60 (resetmem -> .)
 
+    resetmem                       shift and go to state 206
 
 state 193
-
-    (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR . resetmem SEMICOLON funcionpppp
-    (51) resetmem -> .
-
-    SEMICOLON       reduce using rule 51 (resetmem -> .)
-
-    resetmem                       shift and go to state 207
-
-state 194
 
     (75) asignacionp -> AEQL meteopdores expresionandor cuadass SEMICOLON .
 
@@ -2782,16 +2767,28 @@ state 194
     PRINT           reduce using rule 75 (asignacionp -> AEQL meteopdores expresionandor cuadass SEMICOLON .)
 
 
-state 195
+state 194
 
     (76) expresionandor -> expresion cuadexpresionandor auxandor .
 
     SEMICOLON       reduce using rule 76 (expresionandor -> expresion cuadexpresionandor auxandor .)
 
 
-state 196
+state 195
 
     (78) auxandor -> AND . meteopdores expresionandor
+    (82) meteopdores -> .
+
+    LPAR            reduce using rule 82 (meteopdores -> .)
+    ID              reduce using rule 82 (meteopdores -> .)
+    NUMFLOAT        reduce using rule 82 (meteopdores -> .)
+    NUMINT          reduce using rule 82 (meteopdores -> .)
+
+    meteopdores                    shift and go to state 207
+
+state 196
+
+    (79) auxandor -> OR . meteopdores expresionandor
     (82) meteopdores -> .
 
     LPAR            reduce using rule 82 (meteopdores -> .)
@@ -2803,99 +2800,87 @@ state 196
 
 state 197
 
-    (79) auxandor -> OR . meteopdores expresionandor
-    (82) meteopdores -> .
-
-    LPAR            reduce using rule 82 (meteopdores -> .)
-    ID              reduce using rule 82 (meteopdores -> .)
-    NUMFLOAT        reduce using rule 82 (meteopdores -> .)
-    NUMINT          reduce using rule 82 (meteopdores -> .)
-
-    meteopdores                    shift and go to state 209
-
-state 198
-
     (80) auxandor -> empty .
 
     SEMICOLON       reduce using rule 80 (auxandor -> empty .)
 
 
-state 199
+state 198
 
     (91) condif -> IF LPAR expresion cuadcondif RPAR bloque condifp . cuadrellenoif
-    (93) cuadrellenoif -> .
+    (95) cuadrellenoif -> .
 
-    RKEY            reduce using rule 93 (cuadrellenoif -> .)
-    ID              reduce using rule 93 (cuadrellenoif -> .)
-    IF              reduce using rule 93 (cuadrellenoif -> .)
-    WHILE           reduce using rule 93 (cuadrellenoif -> .)
-    DO              reduce using rule 93 (cuadrellenoif -> .)
-    PRINT           reduce using rule 93 (cuadrellenoif -> .)
+    RKEY            reduce using rule 95 (cuadrellenoif -> .)
+    ID              reduce using rule 95 (cuadrellenoif -> .)
+    IF              reduce using rule 95 (cuadrellenoif -> .)
+    WHILE           reduce using rule 95 (cuadrellenoif -> .)
+    DO              reduce using rule 95 (cuadrellenoif -> .)
+    PRINT           reduce using rule 95 (cuadrellenoif -> .)
 
-    cuadrellenoif                  shift and go to state 210
+    cuadrellenoif                  shift and go to state 209
 
-state 200
+state 199
 
-    (94) condifp -> ELSE . cuadconifelse bloque SEMICOLON
+    (92) condifp -> ELSE . cuadconifelse bloque SEMICOLON
     (96) cuadconifelse -> .
 
     LKEY            reduce using rule 96 (cuadconifelse -> .)
 
-    cuadconifelse                  shift and go to state 211
+    cuadconifelse                  shift and go to state 210
+
+state 200
+
+    (93) condifp -> SEMICOLON .
+
+    RKEY            reduce using rule 93 (condifp -> SEMICOLON .)
+    ID              reduce using rule 93 (condifp -> SEMICOLON .)
+    IF              reduce using rule 93 (condifp -> SEMICOLON .)
+    WHILE           reduce using rule 93 (condifp -> SEMICOLON .)
+    DO              reduce using rule 93 (condifp -> SEMICOLON .)
+    PRINT           reduce using rule 93 (condifp -> SEMICOLON .)
+
 
 state 201
-
-    (95) condifp -> SEMICOLON .
-
-    RKEY            reduce using rule 95 (condifp -> SEMICOLON .)
-    ID              reduce using rule 95 (condifp -> SEMICOLON .)
-    IF              reduce using rule 95 (condifp -> SEMICOLON .)
-    WHILE           reduce using rule 95 (condifp -> SEMICOLON .)
-    DO              reduce using rule 95 (condifp -> SEMICOLON .)
-    PRINT           reduce using rule 95 (condifp -> SEMICOLON .)
-
-
-state 202
 
     (97) condwhile -> WHILE LPAR guardarsal expresion quadcondwhile RPAR bloque . rellenocondwhile SEMICOLON
     (100) rellenocondwhile -> .
 
     SEMICOLON       reduce using rule 100 (rellenocondwhile -> .)
 
-    rellenocondwhile               shift and go to state 212
+    rellenocondwhile               shift and go to state 211
 
-state 203
+state 202
 
     (101) conddowhile -> DO guardardowhile bloque WHILE LPAR expresion quadconddowhile . RPAR SEMICOLON
 
-    RPAR            shift and go to state 213
+    RPAR            shift and go to state 212
+
+
+state 203
+
+    (87) escriturapp -> COMMA escriturap .
+
+    RKEY            reduce using rule 87 (escriturapp -> COMMA escriturap .)
+    ID              reduce using rule 87 (escriturapp -> COMMA escriturap .)
+    IF              reduce using rule 87 (escriturapp -> COMMA escriturap .)
+    WHILE           reduce using rule 87 (escriturapp -> COMMA escriturap .)
+    DO              reduce using rule 87 (escriturapp -> COMMA escriturap .)
+    PRINT           reduce using rule 87 (escriturapp -> COMMA escriturap .)
 
 
 state 204
 
-    (89) escriturapp -> COMMA escriturap .
+    (88) escriturapp -> RPAR SEMICOLON .
 
-    RKEY            reduce using rule 89 (escriturapp -> COMMA escriturap .)
-    ID              reduce using rule 89 (escriturapp -> COMMA escriturap .)
-    IF              reduce using rule 89 (escriturapp -> COMMA escriturap .)
-    WHILE           reduce using rule 89 (escriturapp -> COMMA escriturap .)
-    DO              reduce using rule 89 (escriturapp -> COMMA escriturap .)
-    PRINT           reduce using rule 89 (escriturapp -> COMMA escriturap .)
+    RKEY            reduce using rule 88 (escriturapp -> RPAR SEMICOLON .)
+    ID              reduce using rule 88 (escriturapp -> RPAR SEMICOLON .)
+    IF              reduce using rule 88 (escriturapp -> RPAR SEMICOLON .)
+    WHILE           reduce using rule 88 (escriturapp -> RPAR SEMICOLON .)
+    DO              reduce using rule 88 (escriturapp -> RPAR SEMICOLON .)
+    PRINT           reduce using rule 88 (escriturapp -> RPAR SEMICOLON .)
 
 
 state 205
-
-    (90) escriturapp -> RPAR SEMICOLON .
-
-    RKEY            reduce using rule 90 (escriturapp -> RPAR SEMICOLON .)
-    ID              reduce using rule 90 (escriturapp -> RPAR SEMICOLON .)
-    IF              reduce using rule 90 (escriturapp -> RPAR SEMICOLON .)
-    WHILE           reduce using rule 90 (escriturapp -> RPAR SEMICOLON .)
-    DO              reduce using rule 90 (escriturapp -> RPAR SEMICOLON .)
-    PRINT           reduce using rule 90 (escriturapp -> RPAR SEMICOLON .)
-
-
-state 206
 
     (86) escriturap -> STRING meteconst cuadescriturastring escriturapp .
 
@@ -2907,14 +2892,14 @@ state 206
     PRINT           reduce using rule 86 (escriturap -> STRING meteconst cuadescriturastring escriturapp .)
 
 
-state 207
+state 206
 
     (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem . SEMICOLON funcionpppp
 
-    SEMICOLON       shift and go to state 214
+    SEMICOLON       shift and go to state 213
 
 
-state 208
+state 207
 
     (78) auxandor -> AND meteopdores . expresionandor
     (76) expresionandor -> . expresion cuadexpresionandor auxandor
@@ -2934,15 +2919,15 @@ state 208
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    expresionandor                 shift and go to state 215
-    expresion                      shift and go to state 173
+    expresionandor                 shift and go to state 214
+    expresion                      shift and go to state 172
     exp                            shift and go to state 66
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 209
+state 208
 
     (79) auxandor -> OR meteopdores . expresionandor
     (76) expresionandor -> . expresion cuadexpresionandor auxandor
@@ -2962,15 +2947,15 @@ state 209
     NUMFLOAT        shift and go to state 35
     NUMINT          shift and go to state 36
 
-    expresionandor                 shift and go to state 216
-    expresion                      shift and go to state 173
+    expresionandor                 shift and go to state 215
+    expresion                      shift and go to state 172
     exp                            shift and go to state 66
     termino                        shift and go to state 30
     factor                         shift and go to state 31
     varcte                         shift and go to state 33
     llamafunc                      shift and go to state 37
 
-state 210
+state 209
 
     (91) condif -> IF LPAR expresion cuadcondif RPAR bloque condifp cuadrellenoif .
 
@@ -2982,35 +2967,35 @@ state 210
     PRINT           reduce using rule 91 (condif -> IF LPAR expresion cuadcondif RPAR bloque condifp cuadrellenoif .)
 
 
-state 211
+state 210
 
-    (94) condifp -> ELSE cuadconifelse . bloque SEMICOLON
+    (92) condifp -> ELSE cuadconifelse . bloque SEMICOLON
     (61) bloque -> . LKEY bloquep
     (62) bloque -> . LKEY bloqueppp
 
-    LKEY            shift and go to state 86
+    LKEY            shift and go to state 88
 
-    bloque                         shift and go to state 217
+    bloque                         shift and go to state 216
+
+state 211
+
+    (97) condwhile -> WHILE LPAR guardarsal expresion quadcondwhile RPAR bloque rellenocondwhile . SEMICOLON
+
+    SEMICOLON       shift and go to state 217
+
 
 state 212
 
-    (97) condwhile -> WHILE LPAR guardarsal expresion quadcondwhile RPAR bloque rellenocondwhile . SEMICOLON
+    (101) conddowhile -> DO guardardowhile bloque WHILE LPAR expresion quadconddowhile RPAR . SEMICOLON
 
     SEMICOLON       shift and go to state 218
 
 
 state 213
 
-    (101) conddowhile -> DO guardardowhile bloque WHILE LPAR expresion quadconddowhile RPAR . SEMICOLON
-
-    SEMICOLON       shift and go to state 219
-
-
-state 214
-
     (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON . funcionpppp
-    (59) funcionpppp -> . funcionf
-    (60) funcionpppp -> . empty
+    (58) funcionpppp -> . funcionf
+    (59) funcionpppp -> . empty
     (49) funcionf -> . VOID funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp
     (50) funcionf -> . tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
     (112) empty -> .
@@ -3023,32 +3008,32 @@ state 214
     FLOAT           shift and go to state 9
 
     tipo                           shift and go to state 23
-    funcionpppp                    shift and go to state 220
-    funcionf                       shift and go to state 191
-    empty                          shift and go to state 192
+    funcionpppp                    shift and go to state 219
+    funcionf                       shift and go to state 190
+    empty                          shift and go to state 191
 
-state 215
+state 214
 
     (78) auxandor -> AND meteopdores expresionandor .
 
     SEMICOLON       reduce using rule 78 (auxandor -> AND meteopdores expresionandor .)
 
 
-state 216
+state 215
 
     (79) auxandor -> OR meteopdores expresionandor .
 
     SEMICOLON       reduce using rule 79 (auxandor -> OR meteopdores expresionandor .)
 
 
+state 216
+
+    (92) condifp -> ELSE cuadconifelse bloque . SEMICOLON
+
+    SEMICOLON       shift and go to state 220
+
+
 state 217
-
-    (94) condifp -> ELSE cuadconifelse bloque . SEMICOLON
-
-    SEMICOLON       shift and go to state 221
-
-
-state 218
 
     (97) condwhile -> WHILE LPAR guardarsal expresion quadcondwhile RPAR bloque rellenocondwhile SEMICOLON .
 
@@ -3060,7 +3045,7 @@ state 218
     PRINT           reduce using rule 97 (condwhile -> WHILE LPAR guardarsal expresion quadcondwhile RPAR bloque rellenocondwhile SEMICOLON .)
 
 
-state 219
+state 218
 
     (101) conddowhile -> DO guardardowhile bloque WHILE LPAR expresion quadconddowhile RPAR SEMICOLON .
 
@@ -3072,21 +3057,21 @@ state 219
     PRINT           reduce using rule 101 (conddowhile -> DO guardardowhile bloque WHILE LPAR expresion quadconddowhile RPAR SEMICOLON .)
 
 
-state 220
+state 219
 
     (50) funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp .
 
     MAIN            reduce using rule 50 (funcionf -> tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp .)
 
 
-state 221
+state 220
 
-    (94) condifp -> ELSE cuadconifelse bloque SEMICOLON .
+    (92) condifp -> ELSE cuadconifelse bloque SEMICOLON .
 
-    RKEY            reduce using rule 94 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
-    ID              reduce using rule 94 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
-    IF              reduce using rule 94 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
-    WHILE           reduce using rule 94 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
-    DO              reduce using rule 94 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
-    PRINT           reduce using rule 94 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
+    RKEY            reduce using rule 92 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
+    ID              reduce using rule 92 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
+    IF              reduce using rule 92 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
+    WHILE           reduce using rule 92 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
+    DO              reduce using rule 92 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
+    PRINT           reduce using rule 92 (condifp -> ELSE cuadconifelse bloque SEMICOLON .)
 

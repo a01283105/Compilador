@@ -1,19 +1,16 @@
-#Funciona para las palabras
 import codecs
-#Significa la libreria del sistema operativo
+#----------------#Libreria del Sistema Operativo#----------------#
 import os
-#Las siguientes es para ver si funciona el analizador lexico
 import re
+#----------------#Systema#----------------#
 import sys
 
 import ply.lex as lex
-
-#Se utiliza para comentar en python
-
-#Tokens
+#----------------#Tokens#----------------#
 tokens = ['ID','NUMINT','NUMFLOAT','STRING','PLUS','MINUS','MULT','SLASH','AEQL','EQL','LESSTHAN','NOTEQL','MORETHAN','AND','OR','LPAR','RPAR','LKEY','RKEY','LBRK','RBRK','COMMA','SEMICOLON']
 
-reservadas = { #Investigar como implementar palabras reservadas
+#----------------#Palabras Reservadas#----------------#
+reservadas = { 
     'int':'INT',
     'float':'FLOAT',
     'if':'IF',
@@ -30,11 +27,12 @@ reservadas = { #Investigar como implementar palabras reservadas
     'and' : 'AND',
     'or' : 'OR'
 }
+
+#----------------#Juntar tokens y reservadas#----------------#
 tokens = tokens+list(reservadas.values())
-#Definir los tokens
+#----------------#Definicion de Tokens#----------------#
 t_ignore = ' '
 t_STRING = r'"(.*?)"'
-# t_BLANK = '\s'   Si se usa agregar a tokens
 t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_MULT = r'\*'
@@ -48,49 +46,50 @@ t_LPAR = r'\('
 t_RPAR = r'\)'
 t_LKEY = r'\{'
 t_RKEY = r'\}'
-t_LBRK = r'\[' #Preguntar esto
+t_LBRK = r'\['
 t_RBRK = r'\]'
 t_COMMA = r'\,'
-# t_DOT = r'\.'    Si se usa agregar a tokens
 t_SEMICOLON = r'\;'
 
-#Detecta cuando es decimal
+#----------------#Detecta cuando es flotante#----------------#
 def t_NUMFLOAT(t):
      r'[+-]?[0-9]+\.[0-9]+'
      t.value = float(t.value)
      return t
 
-#Detecta cuando es entero
+#----------------#Detecta cuando es entero#----------------#
 def t_NUMINT(t):
      r'[-]?[0-9]+'
      t.value = int(t.value)
      return t
 
-#Detecta si es un id
+#----------------#Detecta si es un id#----------------#
 def t_ID(t):
      r'[a-zA-Z][a-zA-Z_0-9]*'
      t.type = reservadas.get(t.value, 'ID')
      return t
 
-#Detecta una nueva linea
+#----------------#Detecta una nueva linea#----------------#
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
 
-#Detecta si hay un character que no es de los que definimos
+#----------------#Detecta si hay un character que no es de los que definimos----------------#
 def t_error(t):
     print("Character ilegal '%s' " % t.value [0])
     t.lexer.skip(1)
 
+#----------------#Por si se tiene que correr individual#----------------#
 # file = sys.argv[1]
 # directorio = f'D:\deibo\Documents\CompiRepo\Compilador\Tests\{file} '  #Colocar el directorio para ver donde estara el archivo que se va a analizar
 # fp = codecs.open(directorio,"r")
 # cadena = fp. read()
 # fp.close()
 
-#Es necesario para que jale
+#----------------#Funcion para crear el lexer#----------------#
 analizador = lex.lex()
-# En el caso de que tenga que meter mas abrir
+
+#----------------#Por si se tiene que corren individual#----------------#
 # analizador.input(cadena)
 
 # while True:

@@ -8,19 +8,20 @@ from sys import stdin
 from cuad import *
 import json
 
-# Tabla de match
-# {
-# "tipo1": {
-#    "tipo2": {
-#         "operando": "tipo de salida"
-#         }
-#    }
+#----------------#Funcionamiento de Tabla de Simbolos#----------------#
+# tablatipos[]{
+#               "tipo1": {
+#                       "tipo2": {
+#                                   "operando": "tipo de salida"
+#                                   }
+#                           }
 # }
-# ejemplo de llamada
+# Llamada
 # tablaTipos["tipo1"]["tipo2"]["operador"]
-
+#----------------#Watchers de Tipos, Funciones#----------------#
 watcherT = ""
 watcherF = "global"
+#----------------#Creacion de Tabla de Tipos#----------------#
 tablaTipos = {}
 
 tablaTipos["int"] = {"int": {}, "float": {}, "bool": {}}
@@ -51,16 +52,6 @@ tablaTipos["int"]["float"][">"] = "int"
 tablaTipos["int"]["float"]["and"] = "error"
 tablaTipos["int"]["float"]["or"] = "error"
 
-# tablaTipos["int"]["bool"]["="] = "error"
-# tablaTipos["int"]["bool"]["+"] = "error"
-# tablaTipos["int"]["bool"]["-"] = "error"
-# tablaTipos["int"]["bool"]["*"] = "error"
-# tablaTipos["int"]["bool"]["/"] = "error"
-# tablaTipos["int"]["bool"]["=="] = "bool"
-# tablaTipos["int"]["bool"]["!="] = "bool"
-# tablaTipos["int"]["bool"]["<"] = "error"
-# tablaTipos["int"]["bool"][">"] = "error"
-
 tablaTipos["float"]["int"]["="] = "float"
 tablaTipos["float"]["int"]["+"] = "float"
 tablaTipos["float"]["int"]["-"] = "float"
@@ -85,76 +76,17 @@ tablaTipos["float"]["float"][">"] = "int"
 tablaTipos["float"]["float"]["and"] = "error"
 tablaTipos["float"]["float"]["or"] = "error"
 
-# tablaTipos["float"]["bool"]["="] = "error"
-# tablaTipos["float"]["bool"]["+"] = "error"
-# tablaTipos["float"]["bool"]["-"] = "error"
-# tablaTipos["float"]["bool"]["*"] = "error"
-# tablaTipos["float"]["bool"]["/"] = "error"
-# tablaTipos["float"]["bool"]["=="] = "bool"
-# tablaTipos["float"]["bool"]["!="] = "bool"
-# tablaTipos["float"]["bool"]["<"] = "error"
-# tablaTipos["float"]["bool"][">"] = "error"
-
-# tablaTipos["bool"]["int"]["="] = "error"
-# tablaTipos["bool"]["int"]["+"] = "error"
-# tablaTipos["bool"]["int"]["-"] = "error"
-# tablaTipos["bool"]["int"]["*"] = "error"
-# tablaTipos["bool"]["int"]["/"] = "error"
-# tablaTipos["bool"]["int"]["=="] = "bool"
-# tablaTipos["bool"]["int"]["!="] = "bool"
-# tablaTipos["bool"]["int"]["<"] = "error"
-# tablaTipos["bool"]["int"][">"] = "error"
-
-# tablaTipos["bool"]["float"]["="] = "error"
-# tablaTipos["bool"]["float"]["+"] = "error"
-# tablaTipos["bool"]["float"]["-"] = "error"
-# tablaTipos["bool"]["float"]["*"] = "error"
-# tablaTipos["bool"]["float"]["/"] = "error"
-# tablaTipos["bool"]["float"]["=="] = "bool"
-# tablaTipos["bool"]["float"]["!="] = "bool"
-# tablaTipos["bool"]["float"]["<"] = "error"
-# tablaTipos["bool"]["float"][">"] = "error"
-
-# tablaTipos["bool"]["bool"]["="] = "bool"
-# tablaTipos["bool"]["bool"]["+"] = "error"
-# tablaTipos["bool"]["bool"]["-"] = "error"
-# tablaTipos["bool"]["bool"]["*"] = "error"
-# tablaTipos["bool"]["bool"]["/"] = "error"
-# tablaTipos["bool"]["bool"]["=="] = "bool"
-# tablaTipos["bool"]["bool"]["!="] = "bool"
-# tablaTipos["bool"]["bool"]["<"] = "error"
-# tablaTipos["bool"]["bool"][">"] = "error"
-
-
-# precedence = (    #Preguntar que es precedence
-#     ('right', 'AEQL'),
-#     ('left', 'EQL','LESSTHAN', 'MORETHAN', 'NOTEQL'), #No se si este hay que ponerlo
-#     ('left', 'PLUS', 'MINUS'),
-#     ('left', 'MULT', 'SLASH'),
-#     ('left', 'LPAR', 'RPAR')
-# )
+#----------------#Stacks para mis diferentes cuadruplos y verificaciones#----------------#
 
 stackOperandos = []
 stackOperadores = []
 stackSaltos = []
 stackTipos = []
 cuadruplos = []
-#Contador de cuadruplos
+#----------------#Contador de cuadruplos#----------------#
 contador = 0
 
-# Memoria:
-# Locales Int : 2000
-# Locales Flota : 7000
-# Globales Int : 12000
-# Globales Float : 17000
-# Temporales Int : 22000
-# Temporales Float 27000
-# Temporales Pointers : 32000
-# Constantes Int : 37000
-# Constantes Float : 42000
-# Constantes String : 47000
-
-# Memoria:
+#----------------#Espacios Memoria Seleccionados#----------------#
 LocalesInt = 2000
 LocalesFlota = 7000
 GlobalesInt = 12000
@@ -169,12 +101,30 @@ ConstantesString = 47000
 variable1 = 0
 variable2 = 0
 
+#----------------#Creacion de Tabla de Variables y Constantes#----------------#
+
 tablaV = {"global":{"type":"void","var":{}, "ContadorT" : {"int" : 0 ,"float" : 0, "pointers" : 0}}}
 tablaC = {}
 
-#<PROGRAMA>
+#----------------#Programa en General#----------------#
+#----------------#Programa#----------------#
 def p_programa(p):
     '''programa : VAR SEMICOLON variable FUNC SEMICOLON funciones MAIN SEMICOLON resetwatcher maines debug salidadoc'''
+
+def p_programa1(p):
+    '''variable : varf 
+                | empty
+    '''
+
+def p_programa2(p):
+    '''funciones : funcionf 
+                | empty
+    '''
+
+def p_programa3(p):
+    '''maines : mainf resetmem
+              | empty
+    '''
 
 def p_salidadoc(p):
     '''salidadoc :
@@ -209,21 +159,7 @@ def p_resetwatcher(p):
     '''
     global watcherF
     watcherF = "global"
-def p_programa1(p):
-    '''variable : varf 
-                | empty
-    '''
-
-def p_programa2(p):
-    '''funciones : funcionf 
-                | empty
-    '''
-
-def p_programa3(p):
-    '''maines : mainf resetmem
-              | empty
-    '''
-#Var
+#----------------#Var#----------------#
 def p_variable1(p):
     '''varf : tipo varp'''
 
@@ -232,6 +168,19 @@ def p_variable2(p):
             | ID varid varpp
     '''
 
+def p_variable3(p):
+    '''varpp : varppp
+    '''
+
+def p_variable4(p):
+    '''varppp : COMMA varp
+              | SEMICOLON varpppp empty
+    '''
+
+def p_variable5(p):
+    '''varpppp : varf
+               | empty
+    '''
 def p_varid(p):
     ''' varid :
     '''
@@ -260,33 +209,16 @@ def p_varid(p):
         else:
             print("La variable ya existe")
             sys.exit(1)
-
-
-    
-
-def p_variable3(p):
-    '''varpp : varppp
-    '''
-
-def p_variable4(p):
-    '''varppp : COMMA varp
-              | SEMICOLON varpppp empty
-    '''
-
-def p_variable5(p):
-    '''varpppp : varf
-               | empty
-    '''
-#Tipo
+#----------------#Tipo#----------------#
 def p_tipo(p):
     '''tipo : INT funciontipo
             | FLOAT funciontipo
     '''
 
-#Array
+#----------------#Array#----------------#
 def p_array(p):
     '''array : LBRK exp RBRK'''
-#Exp
+#----------------#Exp#----------------#
 def p_exp(p):
     '''exp : termino cuadexp auxexp
     '''
@@ -342,7 +274,7 @@ def p_auxexp(p):
               | MINUS meteopdores exp
               | empty
     '''
-#Termino
+#----------------#Termino#----------------#
 def p_termino(p):
     '''termino : factor cuadtermino auxtermino
     '''
@@ -396,7 +328,7 @@ def p_auxtermino(p):
                   | SLASH meteopdores termino
                   | empty
     '''
-#Factor
+#----------------#Factor#----------------#
 def p_factor(p):
     '''factor : LPAR infondo expresion RPAR outfondo
               | varcte
@@ -412,7 +344,7 @@ def p_outfondo(p):
     '''
     stackOperadores.pop()
 
-#Varcte
+#----------------#Varcte#----------------#
 def p_varcte(p):
     '''varcte : ID meteopandos
               | NUMFLOAT meteconst
@@ -445,7 +377,7 @@ def p_meteconst(p):
         stackTipos.append("string")
         
 
-#Llamafunc
+#----------------#Llamafunc#----------------#
 
 def p_llamafunc1(p):
     '''llamafunc : ID LPAR llamafuncp
@@ -457,7 +389,7 @@ def p_llamafunc2(p):
     '''
 
 def p_llamafunc3(p):
-    '''llamafuncpp : tipo ID llamafuncppp 
+    '''llamafuncpp : ID llamafuncppp 
     '''
 def p_llamafunc4(p):
     '''llamafuncppp : COMMA llamafuncpp
@@ -467,24 +399,11 @@ def p_llamafunc5(p):
     '''llamafuncpppp : RPAR 
     '''
 
-#FUNCION
+#----------------#FUNCION#----------------#
 def p_funcion1(p):
     '''funcionf : VOID funciontipo ID funcionid LPAR funcionp RPAR bloque resetmem SEMICOLON funcionpppp
                 | tipo ID funcionid LPAR funcionp RPAR bloque RETURN LPAR exp RPAR resetmem SEMICOLON funcionpppp
     '''
-
-def p_resetmem(p):
-    '''resetmem :
-    '''
-    global LocalesFlota,LocalesInt,TemporalesFloat,TemporalesInt,variable1,variable2
-    # print(watcherF,TemporalesInt - 22000)
-    tablaV[watcherF]["ContadorT"]["int"] = TemporalesInt - 22000
-    tablaV[watcherF]["ContadorT"]["float"] = TemporalesFloat - 27000
-    LocalesInt = 2000
-    LocalesFlota = 7000
-    TemporalesInt = 22000
-    TemporalesFloat = 27000
-
 
 def p_funciontipo(p):
     ''' funciontipo :
@@ -523,7 +442,20 @@ def p_funcion6(p):
     '''funcionpppp : funcionf
                    | empty
     '''
-#BLOQUE
+#----------------#Resetear Memoria#----------------#
+def p_resetmem(p):
+    '''resetmem :
+    '''
+    global LocalesFlota,LocalesInt,TemporalesFloat,TemporalesInt,variable1,variable2
+    # print(watcherF,TemporalesInt - 22000)
+    tablaV[watcherF]["ContadorT"]["int"] = TemporalesInt - 22000
+    tablaV[watcherF]["ContadorT"]["float"] = TemporalesFloat - 27000
+    LocalesInt = 2000
+    LocalesFlota = 7000
+    TemporalesInt = 22000
+    TemporalesFloat = 27000
+
+#----------------#Bloque#----------------#
 def p_bloque1(p):
     '''bloque : LKEY bloquep
               | LKEY bloqueppp
@@ -541,7 +473,7 @@ def p_bloque3(p):
 def p_bloque4(p):
     '''bloqueppp : RKEY
     '''
-#Estatuto
+#----------------#Estatuto#----------------#
 def p_estatuto(p):
     '''estatuto : asignacion
                 | condif
@@ -550,7 +482,7 @@ def p_estatuto(p):
                 | escritura
                 | llamafunc SEMICOLON
     '''
-#Asignacion
+#----------------#Asignacion#----------------#
 def p_asignacion(p):
     '''asignacion : ID array asignacionp
                   | ID meteopandos asignacionp
@@ -631,13 +563,14 @@ def p_cuadass(p):
         cuadruplos.append(dat)
         contador += 1
 
-#Mete operadores
+#----------------#Mete operadores#----------------#
 def p_meteopdores(p):
     ''' meteopdores :
     '''
     global stackOperadores
     stackOperadores.append(p[-1])
 
+#----------------#Mete operandos#----------------#
 def p_meteopandos(p):
     ''' meteopandos :
     '''
@@ -652,7 +585,7 @@ def p_meteopandos(p):
         print("Esta variable no existe")
         sys.exit(1)
 
-#Escritura
+#----------------#Escritura#----------------#
 def p_escritura1(p):
     '''escritura : PRINT meteopdores LPAR escriturap
     '''
@@ -660,6 +593,11 @@ def p_escritura1(p):
 def p_escritura2(p):
     '''escriturap : expresion cuadescritura escriturapp
                   | STRING meteconst cuadescriturastring escriturapp
+    '''
+
+def p_escritura3(p):
+    '''escriturapp : COMMA escriturap
+                   | RPAR SEMICOLON
     '''
 
 def p_cuadescritura(p):
@@ -687,13 +625,14 @@ def p_cuadescriturastring(p):
             stackTipos.pop()
             contador += 1
 
-def p_escritura3(p):
-    '''escriturapp : COMMA escriturap
-                   | RPAR SEMICOLON
-    '''
-#Condif
+#----------------#Condif#----------------#
 def p_condif1(p):
     '''condif : IF LPAR expresion cuadcondif RPAR bloque condifp cuadrellenoif
+    '''
+
+def p_condif2(p):
+    '''condifp : ELSE cuadconifelse bloque SEMICOLON
+               | SEMICOLON
     '''
 
 def p_cuadcondif(p):
@@ -713,12 +652,6 @@ def p_cuadrellenoif(p):
     salto = stackSaltos.pop()
     cuadruplos[salto].temp = contador
 
-
-def p_condif2(p):
-    '''condifp : ELSE cuadconifelse bloque SEMICOLON
-               | SEMICOLON
-    '''
-
 def p_cuadconifelse(p):
     '''cuadconifelse :
     '''
@@ -729,7 +662,7 @@ def p_cuadconifelse(p):
     contador += 1
     cuadruplos[salto].temp = contador
 
-#Condwhile
+#----------------#Condwhile#----------------#
 def p_condwhile(p):
     '''condwhile : WHILE LPAR guardarsal expresion quadcondwhile RPAR bloque rellenocondwhile SEMICOLON
     '''
@@ -760,7 +693,7 @@ def p_rellenocondwhile(p):
     contador += 1
     cuadruplos[saltof].temp = contador
 
-#Conddowhile
+#----------------#Conddowhile#----------------#
 def p_conddowhile(p):
     '''conddowhile : DO guardardowhile bloque WHILE LPAR expresion quadconddowhile RPAR SEMICOLON
     '''
@@ -780,10 +713,19 @@ def p_quadconddowhile(p):
             cuadruplos.append(cuad("gotoV",stackOperandos.pop(),None, stackSaltos.pop()))
             contador += 1
 
-#Expresion
+#----------------#Expresion#----------------#
 def p_expresion1(p):
     '''expresion : exp cuadexpresion expresionp 
     '''
+
+def p_expresion2(p):
+    '''expresionp : MORETHAN meteopdores expresion
+                  | LESSTHAN meteopdores expresion
+                  | EQL meteopdores expresion
+                  | NOTEQL meteopdores expresion
+                  | empty
+    '''
+
 def p_cuadexpresion(p):
     '''cuadexpresion : 
     '''
@@ -865,37 +807,31 @@ def p_cuadexpresion(p):
                     TemporalesFloat += 1
                     
                 contador += 1
-def p_expresion2(p):
-    '''expresionp : MORETHAN meteopdores expresion
-                  | LESSTHAN meteopdores expresion
-                  | EQL meteopdores expresion
-                  | NOTEQL meteopdores expresion
-                  | empty
-    '''
 
-
+#----------------#Main#----------------#
 def p_main(p):
     '''mainf : bloque SEMICOLON
     '''
-
+#----------------#Error#----------------#
 def p_error(p):
     print("Error de Sintaxis",p)
     print("error en la linea "+ str(p.lineno))
 
-
+#----------------#Pasar Emptys#----------------#
 def p_empty(p):
      'empty :'
      p[0] = None
      pass
-
+#----------------#Para poder correrlo con un directorio#----------------#
 # file = sys.argv[1]
 # directorio = f'D:\deibo\Documents\CompiRepo\Compilador\Tests\{file} '  #Colocar el directorio para ver donde estara el archivo que se va a analizar
 # fp = codecs.open(directorio,"r")
 # cadena = fp. read()
 # fp.close()
-
+#----------------#Constructor del parser#----------------#
 parser = yacc.yacc()
  
+ #----------------#Para meter codigo solo y probar#----------------#
 # while True:
 #     try:
 #         s = input('calc > ')
@@ -905,7 +841,7 @@ parser = yacc.yacc()
 #     result = parser.parse(s)
 #     print(result)
 
-
+#----------------#Necesario para correr, busca archivo#----------------#
 if __name__ == '__main__':
     if(len(sys.argv) > 1):
             file = sys.argv[1]

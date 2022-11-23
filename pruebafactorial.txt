@@ -1,0 +1,17 @@
+var;
+   int factorial, res; 
+func;
+
+main;
+{
+    res = 1;
+    factorial = 5;
+    print ("Factorial de");
+    print(factorial);
+    while(factorial > 1){
+        res = res * factorial;
+        factorial = factorial - 1;
+    };
+    print("El resultado es");
+    print(res);
+};

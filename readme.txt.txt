@@ -1,0 +1,1 @@
+para correr el programa primero correr el parser con el txt y luego la maquina virtual

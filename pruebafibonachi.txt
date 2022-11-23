@@ -1,0 +1,22 @@
+var;
+   int op1, op2, cont1, cont2,res; 
+func;
+
+main;
+{
+    cont1 = 0;
+    cont2 = 8;
+    res = 0;
+    op1 = 0;
+    op2 = 1;
+    print ("Fibonachi en posicion");
+    print(cont2);
+    while(cont1 < cont2){
+        res = op1 + op2;
+        op1 = op2;
+        op2 = res;
+        cont1 = cont1 + 1;
+    };
+    print("El resultado es");
+    print(res);
+};

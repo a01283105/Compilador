@@ -1,3 +1,4 @@
+#----------------#Clase de los cuadruplos#----------------#
 class cuad:
     def __init__(self ,oper ,op1 ,op2 ,temp):
         self.oper = oper

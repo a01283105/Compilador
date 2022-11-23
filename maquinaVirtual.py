@@ -7,14 +7,14 @@ from anaLexico import tokens
 from sys import stdin
 from cuad import *
 import json
-
+#----------------#Leer informacion#----------------#
 archivo = open("Necesario.json")
 codigoOBJ = json.load(archivo)
 archivo.close()
 cuadruplos = codigoOBJ["Cuadruplos"]
 
 contador = 0
-
+#----------------#Info de variables anteriores#----------------#
 LocalesInt = 2000
 LocalesFlota = 7000
 GlobalesInt = 12000
@@ -25,7 +25,7 @@ TemporalesPointers = 32000
 ConstantesInt = 37000
 ConstantesFloat = 42000
 ConstantesString = 47000
-
+#----------------#Arreglos donde se guardara la informacion correspondiente#----------------#
 localInt = []
 localFloat = []
 globalInt = []
@@ -44,7 +44,7 @@ def tipoDefault(tipo: str):
             return 0.0
         if tipo == 'string':
             return ""
-
+#----------------#Iteraciones para guardar la informacion en cada arreglo correspondiente#----------------#
 for x in codigoOBJ["TablaV"]["global"]["var"]:
     ei = codigoOBJ["TablaV"]["global"]["var"][x]["tipo"]
     if ei == "int":
@@ -79,7 +79,7 @@ for x in codigoOBJ["TablaV"]:
         elif codigoOBJ["TablaV"][x]["var"][y]["tipo"] == "float":
             cantidadFloat += 1
 
-    print(x,cantidadInt,cantidadFloat)
+    # print(x,cantidadInt,cantidadFloat)
     while len(localInt) < cantidadInt:
         localInt.append(tipoDefault("int"))
     while len(localFloat) < cantidadFloat:
